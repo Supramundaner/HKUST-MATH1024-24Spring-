@@ -1,0 +1,334 @@
+\documentclass{article}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, color, enumitem, float, fullpage, geometry, graphicx, hyperref, mathrsfs, setspace, subfigure, yhmath}
+\title{\LaTeX{} Answer to Problem Set \#}
+\author{AO Yuzhuo, JIN Zhibo, LYU Changlai\thanks{names listed in alphabetical order}}
+\date{\today}
+
+\def\sep{\vspace{1cm}\hrule\vspace{1cm}}
+\def\tab{\;\;\;\;\;\;}
+\def\R{\mathbb{R}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\a{\alpha}
+\def\b{\beta}
+\def\c{\gamma}
+\def\d{\delta}
+\def\e{\epsilon}
+\def\h{\theta}
+\def\w{\omega}
+\def\W{\Omega}
+\def\bu{\mathbf{u}}
+\def\bv{\mathbf{v}}
+\def\iff{\Longleftrightarrow}
+\def\to{\rightarrow}
+\def\inj{\hookrightarrow}
+\def\surj{\twoheadrightarrow}
+\def\imply{\Longrightarrow}
+\def\x{\times}
+\def\<{\langle}
+\def\>{\rangle}
+\def\oo{\infty}
+\def\normal{\triangleleft}
+\def\h{\hspace*{0.5cm}}
+
+\begin{document}
+\maketitle
+
+\section{} % Question 1
+Proof:
+
+Let $f(x)=x^p$ and $P_n$ be the partition
+$$x_0:=0<\frac{1}{n}<\frac{2}{n}<\cdots<\frac{n-1}{n}<\frac{n}{n}=1=x_n$$
+Then, for any $i\in \{1,\cdots,n\}$ we have
+$$M_i:= \sup_{x\in [x_{i-1},x_i]} f(x)=f(x_i)$$
+$$m_i:= \inf_{x\in [x_{i-1},x_i]} f(x)=f(x_{i-1})$$
+Hence,
+\begin{align*}
+U(P_n,f)&=\sum_{i=1}^{n}M_i\cdot \frac{1}{n}\\
+&=\sum_{i=1}^{n}f(x_i)\cdot\frac{1}{n}\\
+&=\left(\sum_{i=1}^{n}i^p\cdot\frac{1}{n^p}\right)\cdot\frac{1}{n}\\
+&=\left(\sum_{i=1}^{n}i^p\right)\cdot\frac{1}{n^{p+1}}\\
+&=\frac{1}{p+1}\sum_{j=0}^{p}(-1)^j C^{p+1}_j B_jn^{p+1-j}\cdot\frac{1}{n^{p+1}}\\
+&=\frac{1}{p+1}\sum_{j=0}^{p}(-1)^j C^{p+1}_j B_jn^{-j}
+\end{align*}
+
+\begin{align*}
+L(P_n,f)&=\sum_{i=1}^{n}m_i\cdot \frac{1}{n}\\
+&=\sum_{i=1}^{n}f(x_{i-1})\cdot\frac{1}{n}\\
+&=\left(\sum_{i=1}^{n}(i-1)^p\cdot\frac{1}{n^p}\right)\cdot\frac{1}{n}\\
+&=\left(\sum_{i=1}^{n}(i-1)^p\right)\cdot\frac{1}{n^{p+1}}\\
+&=\left(\frac{1}{p+1}\sum_{j=0}^{p}(-1)^j C^{p+1}_j B_jn^{p+1-j}-n^p\right)\cdot\frac{1}{n^{p+1}}\\
+&=\frac{1}{p+1}\sum_{j=0}^{p}(-1)^j C^{p+1}_j B_jn^{-j}-\frac{1}{n}
+\end{align*}
+\begin{align*}
+  \lim_{n\to\infty}U(P_n,f)&=\frac{1}{p+1}\lim_{n\to\infty}
+  \sum_{j=0}^{p}(-1)^j C^{p+1}_j B_jn^{-j}\\
+  &=\frac{1}{p+1}\lim_{n\to\infty}
+  \left(\sum_{j=1}^{p}(-1)^j C^{p+1}_j B_jn^{-j}+1\right)
+\end{align*}
+$\forall j\in\{1,2,\cdots,p\}$, $\left((-1)^j C^{p+1}_j B_j\right)$ is finite while
+$\lim_{n\to\infty}n^{-j}=0$
+$$\begin{aligned}
+&\therefore \lim_{n\to\infty}(-1)^j C^{p+1}_j B_jn^{-j}=0 \\
+&\therefore \lim_{n\to\infty}\sum_{j=1}^{p}(-1)^j C^{p+1}_j B_jn^{-j}=0
+\end{aligned}$$
+\begin{align*}
+  \lim_{n\to\infty}U(P_n,f)&=\frac{1}{p+1}\lim_{n\to\infty}
+  \left(\sum_{j=1}^{p}(-1)^j C^{p+1}_j B_jn^{-j}+1\right)\\
+  &=\frac{1}{p+1}\left(\lim_{n\to\infty}
+  \left(\sum_{j=1}^{p}(-1)^j C^{p+1}_j B_jn^{-j}\right)+1\right)\\
+  &=\frac{1}{p+1}\\
+  \lim_{n\to\infty}L(P_{n},f)&=\lim_{n\to\infty}\left(U(P_n,f)-\frac{1}{n}\right)\\
+  &=\frac{1}{p+1}
+\end{align*}
+Thus
+$$\lim_{n\to\infty}U(P_{n},f)=\lim_{n\to\infty}L(P_{n},f)=\frac{1}{p+1}$$
+By Problem Set 1(6.), we can prove that 
+$$\int_{0}^{1}x^p dx=\frac{1}{p+1}$$
+
+\section{} % Question 2
+First, we prove the formula:
+
+Using the fact that $\sin\alpha \sin\beta = \frac{1}{2} \left( \cos\left(\alpha - \beta\right) - \cos\left(\alpha + \beta\right) \right)$, we have:
+$$\begin{aligned}
+\text{LHS} &= 2\sin\left(\frac{x}{2}\right) \sin (x) + 2\sin\left(\frac{x}{2}\right) \sin (2x) + \cdots + 2\sin\left(\frac{x}{2}\right) \sin (nx) \\
+&= \cos\left(-\frac{x}{2}\right) - \cos\left(\frac{3x}{2}\right) + \cos\left(-\frac{3x}{2}\right) - \cos\left(\frac{5x}{2}\right) + \cdots + \cos\left(\left(\frac{1}{2} - n\right)x\right) - \cos\left(\left(\frac{1}{2} + n\right)x\right) \\
+&= \cos\left(\frac{x}{2}\right) - \cos\left(\left(n + \frac{1}{2}\right)x\right) \\
+&= \text{RHS}
+\end{aligned}$$
+\\\\
+Next, we proceed to prove $\sin x$ Riemann integrable and find its value:
+
+We use symmetry to reduce the problem to monotone interval $[0,\frac{\pi}{2}]$ \& $[\frac{\pi}{2},\pi]$, then prove $\lim_{n\to\infty} U(P_n, f) = \lim_{n\to\infty} L(P_n, f)$.
+
+We start by taking an uniformly-spaced partition $P_{2m}: x_k = \frac{k}{2m} \pi$ $(k=0,1,2,\cdots,2m)$.
+$$\begin{aligned}
+L(P_{2m}, f) &= \sum_{i=1}^{2m} \frac{\pi}{2m} \cdot \left( \inf_{[x_{i-1}, x_i]} \sin x \right) \\
+&= \sum_{j=1}^m \frac{\pi}{2m} \cdot \left( \inf_{[x_{j-1}, x_j]} \sin x \right) + \sum_{k={m+1}}^{2m} \frac{\pi}{2m} \cdot \left( \inf_{[x_{k-1}, x_k]} \sin x \right) \\
+\end{aligned}$$
+The first part corresponds to $[0,\frac{\pi}{2}]$, on which $\sin x$ monotonely increases. The second part corresponds to $[\frac{\pi}{2},\pi]$, on which $\sin x$ monotonely decreases. Therefore:
+$$\begin{aligned}
+L(P_{2m}, f) &= \sum_{j=1}^m \frac{\pi}{2m} \cdot \sin \left(\frac{\pi}{2m} \cdot (j-1)\right) + \sum_{k={m+1}}^{2m} \frac{\pi}{2m} \cdot \sin \left(\frac{\pi}{2m} \cdot k\right) \\
+&= \sum_{j=1}^m \frac{\pi}{2m} \cdot \sin \left(\frac{\pi}{2m} \cdot (j-1)\right) + \sum_{k={m+1}}^{2m} \frac{\pi}{2m} \cdot \sin \left(\pi - \left(\frac{\pi}{2m} \cdot k\right)\right) \\
+&= \sum_{j=1}^m \frac{\pi}{2m} \cdot \sin \left(\frac{\pi}{2m} \cdot (j-1)\right) + \sum_{k=1}^{m} \frac{\pi}{2m} \cdot \sin \left(\frac{\pi}{2m} \cdot (k-1)\right) \\
+&= 2 \cdot \frac{\pi}{2m} \cdot \sum_{j=1}^m \sin \left(\frac{\pi}{2m} \cdot (j-1)\right) \\
+&= 2 \cdot \frac{\pi}{2m} \cdot \frac{ \cos\frac{\pi}{4m} - \cos\left( (m-\frac{1}{2}) \cdot \frac{\pi}{2m} \right) }{2\sin\frac{\pi}{4m}} \\
+&= 2 \cdot \frac{\pi}{2m} \cdot \left( \frac{1}{2}\cot\frac{\pi}{4m} - \frac{1}{2} \right) \\
+&= 2 \cdot \frac{ \frac{\pi}{4m} }{ \tan\frac{\pi}{4m} } - \frac{\pi}{2m} \\
+\implies &\lim_{m\to\infty} L(P_{2m}, f) = 2
+\end{aligned}$$
+We treat $U(P_{2m}, f)$ the same way, with slight differences:
+$$\begin{aligned}
+U(P_{2m}, f) &= \sum_{j=1}^m \frac{\pi}{2m} \cdot \left( \sup_{[x_{j-1}, x_j]} \sin x \right) + \sum_{k={m+1}}^{2m} \frac{\pi}{2m} \cdot \left( \sup_{[x_{k-1}, x_k]} \sin x \right) \\
+&= \sum_{j=1}^m \frac{\pi}{2m} \cdot \sin \left(\frac{\pi}{2m} \cdot j\right) + \sum_{k={m+1}}^{2m} \frac{\pi}{2m} \cdot \sin \left(\frac{\pi}{2m} \cdot (k-1)\right) \\
+&= 2 \cdot \frac{\pi}{2m} \cdot \sum_{j=1}^m \sin \left(\frac{\pi}{2m} \cdot j\right) \\
+&= 2 \cdot \frac{\pi}{2m} \cdot \frac{ \cos\frac{\pi}{4m} - \cos\left( (m+\frac{1}{2}) \cdot \frac{\pi}{2m} \right) }{2\sin\frac{\pi}{4m}} \\
+&= 2 \cdot \frac{\pi}{2m} \cdot \left( \frac{1}{2}\cot\frac{\pi}{4m} + \frac{1}{2} \right) \\
+&= 2 \cdot \frac{ \frac{\pi}{4m} }{ \tan\frac{\pi}{4m} } + \frac{\pi}{2m} \\
+\implies &\lim_{m\to\infty} U(P_{2m}, f) = 2
+\end{aligned}$$
+Finally, use the equivalent definition in HW1 Q6:
+$$\lim_{m\to\infty} L(P_{2m}, f) = \lim_{m\to\infty} U(P_{2m}, f) = 2 \iff \sin x \text{ Riemann integrable on } [0,\pi] \text{, and its value is } 2$$
+
+\section{} % Question 3
+\def\upd{U(P, f)}
+\def\lowd{L(P, f)}
+\def\updn{U(P_n,f)}
+\def\supf{\sup\limits_{[x_{i-1}, x_i]}f}
+\def\supsin{\sup\limits_{[x_{i-1}, x_i]}\sin(x)}
+\def\inff{\inf\limits_{[x_{i-1}, x_{i}]}f}
+\def\infsin{\inf\limits_{[x_{i-1}, x_i]}\sin(x)}
+\def\supg{\sup\limits_{[x_{i-1}, x_i]}g}
+$f(x)$ is not Riemann integrable on $[0, \pi]$. We'll justify this by showing that $$\inf\{\upd|\text{P is a partition of $[0, \pi]$}\}\neq \sup\{\lowd|\text{P is a partition of $[0,\pi]$}\}$$
+First we evaluate $\inf\{\upd|\text{P is a partition of $[0, \pi]$}\}$.
+\\Let $P_n:=\{x_0, x_1,\cdots,x_n\}$ be a randomly chosen partition of $[0, \pi]$, then
+$$\updn=\sum_{i=1}^{n}\supf\cdot (x_{i}-x_{i-1})$$
+We claim that $\supf=\supsin$. Justification:
+\\With \textit{EVT}, we know $\sin x$ has its maximum on the close interval $[x_{i-1}, x_{i}]$. Denote this maximum by $M$, hence $$M=\supsin \text{ and } \exists a\in [x_{i-1}, x_{i}] \text{ such that } \sin(a)=M$$
+If $a\in \Q$, then $f(a)=\sin (a) =\supsin$
+\\Moreover, we see that $\forall x\in [x_{i-1}, x_i],~f(x)\le \sin(x)$
+\\hence $$\supsin\ge\supf\ge f(a)=\supsin\imply \supf=\supsin$$
+If $a\in \R\setminus \Q$, by the density of $\Q$ we can find a sequence of rational numbers ${q_n}$ s.t. $\lim\limits_{n\to +\oo}q_n=a$
+\\Since $\sin x$ continuous on $[x_{i-1}, x_i]$
+$$\lim\limits_{n\to \infty}\sin(q_n)=\sin(a)$$
+For any $L<M$:
+$$\exists N, \forall n>N, |\sin(q_n)-\sin(a)|<\varepsilon_1:=\frac{M-L}{2}$$
+fix $n_1>N$, then $$|\sin(q_{n_1})-\sin(a)|<\varepsilon_1\imply f(q_{n_1})=\sin(q_{n_1})>\sin(a)-\varepsilon_1>L$$
+This shows any real number $L$ less then $M$ is not an upper bound for $\{f(x)|x\in [x_{i-1}, x_i]\}$, and hence in this case $M$ is the smallest upper bound i.e. $\sin (a)=M=\supf$
+\\Thus combining both case we have:
+$$\supf=\supsin$$
+hence $$\updn=\sum_{i=1}^{n}\supf\cdot (x_{i}-x_{i-1})=\sum_{i=1}^{n}\supsin\cdot (x_i-x_{i-1})$$
+Consider $g(x):=\sin(x)$:
+\\We've previously shown that $g(x)$ is Riemann integrable on $[0, \pi]$ with $\int_{0}^{\pi}g(x)dx=2$
+\\hence 
+$$\inf\big\{U(P, g)| \text{P is a partition of $[0,\pi]$}\big\}=\overline{\int_{0}^{\pi}}g(x)dx=2$$
+Since for any partition $P_n$ we have 
+$$\updn=\sum_{i=1}^{n}\supsin \cdot (x_i-x_{i-1})=\sum_{i=1}^{n}\sup\limits_{[x_{i-1}, x_i]}g(x) \cdot(x_i-x_{i-1})=U(P_n, g)$$
+hence 
+$$\overline{\int_{0}^{\pi}}f(x)dx=\inf\{\upd|\text{P is a partition of $[0,\pi]$}\}=\inf\{U(P, g)|\text{P is a partition of $[0,\pi]$}\}=2$$
+Next we consider $L(P_n, f)$.
+\\For any interval $[a, b]\subset \R$, $\exists r\in \R\setminus\Q \text{ such that } r\in [a, b]$
+\\thus, $\inff\le 0$
+\\moreover, $\forall x\in \R, f(x)\ge 0$, hence $\inff\ge0 \imply \inff=0$
+\\hence, choose a random partition $P_n$, there is 
+$$L(P_n, f)=\sum_{i=1}^{n}\inff\cdot (x_{i}-x_{i-1})=0$$
+hence, 
+$$\sup\big\{\lowd|\text{P is a partition of $[0,\pi]$}\}=0$$
+We've shown that
+$$\inf\{\upd|\text{P is a partition of $[0, \pi]$}\}=2\neq 0=\sup\{\lowd|\text{P is a partition of $[0,\pi]$}\}$$
+and consequently $f(x)$ is not Riemann integrable on $[0, \pi]$.
+
+\section{} % Question 4
+\paragraph{(a)}
+Given $f(x)$ is Riemann integrable on [a, b], $G(f(x))$ is Jordan measurable on $[a, b]$.
+\\Let $\Omega_{i}=\{c_i\}\x \<0, f(c_i) \> $ when $f(c_i)\ge 0$; $\Omega_j=\{c_j\}\x \<f(c_j), 0\>$ when $f(c_j)<0$.
+\\We've shown that any line segments has Jordan measure 0, and finite subtracts of Jordan measurable sets is Jordan measurable
+\\hence 
+$$\mu\left(G(f(x))\setminus\left(\bigcup_{i=1}^{k}\Omega_i\right)\right)=\mu(G(f(x))-\sum_{i=1}^{k}\mu(\Omega_i)=\mu(G(f(x)))=\int_{a}^{b}f(x)dx$$
+Then consider $g(x)$:
+\\Let $\Omega^{'}_{i}=\{c_i\}\x \<0, g(c_i) \> $ when $g(c_i)\ge 0$; $\Omega^{'}_j=\{c_j\}\x \<g(c_j), 0\>$ when $g(c_j)<0$.
+\\hence 
+\begin{flalign*} 
+	G(g(x))=&G^+(g(x))\cup G^-(g(x))\\
+	=&\{(x, y)|0\le y \le g(x), x\in [a, b]\}\cup\{(x,y)| g(x)\le y< 0, x\in[a, b]\}\\
+	=&\left(\{(x, y)|0\le y \le f(x), x\in [a, b]\}\cup\{(x, y)| f(x)\le y< 0, x\in[a, b]\}\setminus\left(\bigcup_{i=1}^{k}\Omega_i\right)\right)\cup \left(\bigcup_{i=1}^{k}\Omega_{i}^{'}\right)\\
+	=&\left(G(f(x))\setminus \bigcup_{i=1}^{k}\Omega_{i}\right)\cup \bigcup_{i=1}^{k}\Omega_{i}^{'}\\
+\end{flalign*}
+\\again, $\bigcup_{i=1}^{k}\Omega_{i}^{'}=0$, hence $G(g(x)) $ is Jordan measurable with 
+$$\mu\big(G(g(x))\big)=\mu\big(G(f(x))\big)-\mu\left(\bigcup_{i=1}^{k}\Omega_{i}\right)+\mu\left(\bigcup_{i=1}^{k}\Omega_{i}^{'}\right)=\mu\big(G(f(x))\big)$$
+and hence 
+$$\int_{a}^{b}g(x)dx=\int_{a}^{b}f(x)dx$$
+
+\paragraph{(b)}
+We'll first justify the case when $k=1$ i.e. exactly on $c\in[a,b]$ s.t. $g(c)\neq f(c)$.
+\\Given $f(x)$ is Jordan measurable, by previous works there exists a sequence of partitions $\{P_n\}$ such that 
+$$\lim\limits_{ n\to \oo}L(P_n, f)=\lim\limits_{n\to \oo}U(P_n, f)=\int_{a}^{b}f(x)dx=:M$$
+Choose a partition $P_n:=\{x_0, x_1, x_2,\cdots,x_n\}$
+\\assume that such $c$ sits between $x_k ,x_{k+1}$.
+\\Let $h=\min\{|c-x_k|, |x_{k+1}-c| \}$, then $0\le h\le b-a$
+% Refinement is needed here when c=x_k, which implies h=0
+\\let $p=c-\frac{h}{n}, q=c+\frac{h}{n}$, then we have $x_{k}\le p\le c\le q\le x_{k+1}$
+\\Then consider a new partition $P_n':=\{p, q, c\}\cup \{P_n\}$:
+\\because $\sup\limits_{I_1} f , \sup\limits_{I_2} f \le \sup\limits_{I_1\cup I_2}f$
+\\hence
+\def\temp{(x_i-x_{i-1})}
+\begin{flalign*} 
+	U(P_n', g)=&\sum_{i=1}^{k}\supg\cdot \temp+\sum_{k+2}^{n}\supg\cdot \temp+(p-x_k)\cdot \sup\limits_{[x_k, p]}g\\\;&+(c-p)\cdot \sup\limits_{[p, c]}g + (q-c)\cdot \sup\limits_{[c, q]}g+(x_{k+1}-q)\cdot \sup\limits_{[q, x_{k+1}]}g\\
+	=&\sum_{i=1}^{k}\supf \cdot \temp +\sum_{k+2}^{n}\supf \cdot \temp +(p-x_k)\cdot \sup\limits_{[x_k, p]}f\\\;&+(c-p)\cdot \sup\limits_{[p, c]}g + (q-c)\cdot \sup\limits_{[c, q]}g+(x_{k+1}-q)\cdot \sup\limits_{[q, x_{k+1}]}f\\
+	\le&\sum_{i=1}^{k}\supf \cdot \temp +\sum_{k+2}^{n}\supf \cdot \temp+ (p-x_k+x_{k+1}-q)\cdot \sup\limits_{[x_k, x_{k+1}]} f\\\;&+(c-p+q-c)\cdot \sup\limits_{[p, q]} g\\
+	=&\sum_{i=1}^{n} \supf\cdot \temp+(q-p)\cdot (\sup\limits_{[p, q]}g-\sup\limits_{[x_k, x_{k+1}]} f)\\
+	=&U(P_n, f)+(q-p)\cdot (\sup\limits_{[p, q]}g-\sup\limits_{[x_k, x_{k+1}]} f)\\
+	\le&U(P_n, f)+(q-p)\cdot (\sup\limits_{[a, b]}g-\inf\limits_{[a, b]}f)\\
+\end{flalign*}
+hence
+$$U(P_n', g)\le U(P_n, f)+(q-p)\cdot (\sup\limits_{[a, b]}g-\inf\limits_{[a, b]}f)$$
+Using the similar arguments, together with the fact that $\inf\limits_{I_1}f, \inf\limits_{I_2}f\ge \inf\limits_{I_1\cup I_2}f$, we can also show that 
+$$	L(P_n', g)\ge L(P_n, f)+(q-p)\cdot (\inf\limits_{[a, b]}g-\sup\limits_{[a, b]}f)$$
+then consider the $(q-p)$:
+\\because $|q-p|=|q-c+c-p|\le |q-c|+|c-p|\le \frac{2h}{n}\le \frac{2(b-a)}{n}$
+\\and $\lim\limits_{n\to\oo}\frac{2(b-a)}{n}=0$
+\\hence by squeeze theorem, $\lim\limits_{n\to\oo}|q-p|=0\imply \lim\limits_{n\to\infty}(q-p)=0$
+\\hence
+$$\lim\limits_{n\to \infty}\left( U(P_n, f)+(q-p)\cdot (\sup\limits_{
+[a, b]}g-\inf\limits_{[a, b]}f)\right)=M+0=M$$
+and 
+$$\lim\limits_{n\to \oo}\left(L(P_n, f)+(q-p)\cdot (\inf\limits_{[a, b]}g-\sup\limits_{[a, b]}f)\right)=M+0=M$$
+
+Moreover, 
+$$L(P_n, f)+(q-p)\cdot (\inf\limits_{[a, b]}g-\sup\limits_{[a, b]}f)\le L(P_n', g)\le U(P_n', g)\le U(P_n, f)+(q-p)\cdot (\sup\limits_{
+	[a, b]}g-\inf\limits_{[a, b]}f)$$
+hence by squeeze theorem,
+$$\lim\limits_{n\to\oo}U(P_n', g)=\lim\limits_{n\to\oo}L(P_n',g)=M$$
+This shows $g(x)$ is also Riemann integrable on $[a, b]$, with
+$$\int_{a}^{b}g(x)dx=M=\int_{a}^{b}f(x)dx$$
+Hence such equation holds for $k=1$ case. Since k is a finite number, we can use induction to deduce that given two bounded function $f(x),g(x)$ on $[a, b]$, where $f(x) $ is Riemann integrable and $f(x)=g(x)$ except finitely many points, then $g$ is also Riemann Integrable with 
+$$\int_{a}^{b}g(x)dx=\int_{a}^{b}f(x)dx$$ 
+
+\section{} % Question 5
+\paragraph{(a)} Proof:
+
+First we  show that $f(x)=e^x$ is not Lipschitz continuous:\\
+Suppose it's Lipschitz continuous:\\
+then $\exists L>0,\forall x,y\in I(x\neq y)$, we have
+$\left|\frac{f(x)-f(y)}{x-y}\right|\leq L.$
+Let $y=x+\frac{1}{n}$, then
+$\forall x:$
+$$\lim_{n\to\infty}\left|\frac{f(x)-f(y)}{x-y}\right|=\left|\frac{d}{dx}f(x)\right|=e^x
+\leq L$$
+As we know $\lim_{x\to\infty}e^x=+\infty$, which leads to a contradiction.\\
+Thus it's not Lipschitz continuous.\\
+
+Second, we show that it's locally Lipschitz continuous on $\mathbb{R}$:\\
+If $x=y$, then it's trivial that $|f(x)-f(y)|\leq L|x-y|$\\
+If $x\neq y$:
+$$\left|\frac{f(x)-f(y)}{x-y}\right|=\frac{e^x-e^y}{x-y}$$
+By MVT, one can take $\delta =1$ and $L=e^{a+2}$, then $\forall a\in I$ such that $\forall x,y\in (a-\delta,a+\delta)\cap I$, $\exists p\in (a-\delta,a+\delta)\cap I$,
+$$\left|\frac{f(x)-f(y)}{x-y}\right|=\left|
+\frac{d}{dx}f(p)\right|=e^p<e^{a+2}=L$$\\
+Thus it's locally Lipschitz continuous on $\mathbb{R}$.
+
+\paragraph{(b)} Proof:
+\\\\
+We can prove it by contraposition:
+Assuming that $f$ is not Lipschitz continuous on $[a,b]$:
+
+i.e. $\forall L>0,\exists x,y\in I,
+ \left|\frac{f(x)-f(y)}{x-y}\right|> L$.\\
+ Then we can subsititute $L,x,y$ by $n,x_n,y_n$ respectively.
+ Thus:
+ $$\left|\frac{f(x_n)-f(y_n)}{x_n-y_n}\right|> n$$
+ By using BWT twice (the same trick used in the proof of Prop 4.5 in the lecture note), one can always find subsequences of $\{x_n\}$
+ and $\{y_n\}$(i.e. $\{x_{n_k}\},\{y_{n_k}\}$) such that:
+ $$\left|\frac{f(x_{n_k})-f(y_{n_k})}{x_{n_k}-y_{n_k}}\right|> {n_k}$$
+ $$\lim_{k\to\infty}x_{n_k}=X(X\in [a,b])$$
+ $$\lim_{k\to\infty}y_{n_k}=Y(Y\in [a,b])$$
+ Thus naturally we can get\
+ $$\lim_{k\to\infty} \left|\frac{f(x_{n_k})-f(y_{n_k})}
+ {x_{n_k}-y_{n_k}}\right|=
+ +\infty$$
+ \subparagraph{1.}
+ If $X\neq Y$:
+ \\
+ By $ \lim_{k\to\infty}|x_{n_k}-y_{n_k}|=|X-Y|\leq (b-a)$, we can deduce that
+ $\lim_{k\to\infty}|f(x_{n_k})-f(y_{n_k})|=+\infty$,which means 
+ $\lim_{k\to\infty}|f(x_{n_k})|=+\infty$ or  $\lim_{k\to\infty}|f(y_{n_k})|=+\infty$.\\
+ Without loss of generality, we can suppose
+ $\lim_{k\to\infty}|f(x_{n_k})|=+\infty.$\\
+ By  $$\lim_{k\to\infty}|f(x_{n_k})|=+\infty,$$ 
+ $\forall L>0,\exists K_1$ s.t. $\forall k>K_1, |f(x_{n_k})|>|f(X)|+L.$\\
+ By  $$\lim_{k\to\infty}x_{n_k}=X(X\in [a,b]),$$
+ $\forall \delta>0,$ $\exists K_2$ s.t. $\forall k>K_2$, $x_{n_k}\in(X-\delta,x+\delta).$\\
+ $\exists K_0$ s.t. $\forall k>K_0$, $x_{n_k}\in(X-1,X+1).$\\
+ Then combining with $x_{n_k}\in I$, \\ $\forall L,\delta ,
+ \exists K_3=\max \{K_0,K_1,K_2\}$ s.t. $\forall k>K_3,  x_{n_k}\in
+  I\cap (X-\delta ,X+\delta )$,
+  $|f(x_{n_k})|-|f(X)|>L$ and $0<|x_{n_k}-X|<1$.\\(To ensure that $x_{n_k}\neq X$(i.e.$|x_{n_k}-X|>0$), we just need to take
+  $x_{n_k}$ such that $|f(x_{n_k})|>f(X)$ )\\
+  In this case, $ |f(x_{n_k})-f(X)|\geq|f(x_{n_k})|-|f(X)|>L> L|x_{n_k} − X|$
+  (i.e.$\left|\frac{f(x_{n_k})-f(X)}{x_{n_k}-X}\right|>L$),
+  which 
+  contradicts to the definition of locally Lipschitz continuous.\\ \ \\
+  \subparagraph{2.}
+  If $X=Y$:
+  $$\lim_{k\to\infty}x_{n_k}=
+  \lim_{k\to\infty}y_{n_k}=X(X\in [a,b])$$
+  by the definition of limit, 
+  $\forall L,\delta,\exists N_1$ such that if $k>N_1$, $ x_{n_k},y_{n_k}\in I\cap (X-\delta,X+\delta)$.
+  
+
+  Recalling that $$\lim_{k\to\infty} \left|\frac{f(x_{n_k})-f(y_{n_k})}
+ {x_{n_k}-y_{n_k}}\right|=
+ +\infty$$
+ $\exists N_2$ such that if $k>N_2$,
+ $$\left|\frac{f(x_{n_k})-f(y_{n_k})}{x_{n_k}-y_{n_k}}\right|>L$$
+ Thus $\forall L,\delta,\exists N_3=\max\{N_1,N_2\}$ 
+ such that if $k>N_3$, $ x_{n_k},y_{n_k}\in I\cap (X-\delta,X+\delta)$ and
+ $$\left|\frac{f(x_{n_k})-f(y_{n_k})}{x_{n_k}-y_{n_k}}\right|>L,$$ 
+  which contradicts to the definition of locally Lipschitz continuous.\\ \ \\
+  To conclude, by the assumption $f$ is not Lipschitz continuous on [a,b], we find
+  $f$ is not locally Lipschitz continuous on [a,b], which means 
+  if $f$ is locally Lipschitz continuous, then $f$ is Lipschitz continuous.
+
+\end{document}

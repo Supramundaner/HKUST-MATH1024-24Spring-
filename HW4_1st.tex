@@ -1,0 +1,221 @@
+\documentclass{article}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, color, enumitem, float, fullpage, geometry, graphicx, hyperref, mathrsfs, setspace, subfigure, yhmath}
+\title{\LaTeX{} Answer to Problem Set \#}
+\author{AO Yuzhuo, JIN Zhibo, LYU Changlai\thanks{names listed in alphabetical order}}
+\date{\today}
+
+\def\N{\mathbb{N}}
+
+\begin{document}
+\maketitle
+
+\section{} % Question 1
+Firstly we find the recurrence relationship:\\
+By integration by parts:
+\begin{align*}
+    I_{m,n}&=\int_{0}^{\pi}e^{mx}\sin^{n-1}d(-\cos x)\\
+    &=\left[-\cos x e^{mx}\sin ^{n-1}x\right]_0^{\pi}-
+    \int_{0}^{\pi}-\cos x d(e^{mx}\sin ^{n-1}x)\\
+    &=\int_{0}^{\pi}\cos x d e^{mx}\sin ^{n-1}x\\
+    &=\int_{0}^{\pi}e^{mx}\left(m\cos x\sin ^{n-1}x+(n-1)\sin^{n-2}x\cos^2 x\right)dx\\
+    &=m\int_{0}^{\pi}x^{mx}\sin ^{n-1}\cos x dx +(n-1)\int_{0}^{\pi}
+    e^{mx}\sin^{n-2}x(1-\sin^2 x)dx\\
+    &=m\int_{0}^{\pi}e^{mx}d\left(\frac{1}{n}\sin ^{n}x\right)+(n-1)(I_{m,n-2}-I_{m,n})\\
+    &=\frac{m^2}{n}\int_{0}^{\pi}\sin ^n xe^{mx}dx+(n-1)(I_{m,n-2}-I_{m,n})\\
+    &=\frac{m}{n^2}\cdot I_{m,n}+(n-1)(I_{m,n-2}-I_{m,n})\\
+\end{align*}
+Thus by rearrangement, we have
+$$\frac{I_{m,n}}{I_{m,n-2}}=\frac{n(n-1)}{m^2+n^2}$$
+It's trivial to get 
+$$I_{m,0}=\int_{0}^{\pi}e^{mx}dx=\left[\frac{e^{mx}}{m}\right]^\pi_0=\frac{e^{m\pi-1}}{m}$$
+Thus for even $n$:
+\begin{align*}
+    I_{m,n}&=I_{m,0}\cdot\frac{I_{m,2}}{I_{m,0}}\cdot\frac{I_{m,4}}{I_{m,2}}
+    \cdot\dots\cdot\frac{I_{m,n}}{I_{m,n-2}}\\
+    &=\frac{e^{m\pi-1}}{m}\cdot\frac{1\cdot 2}{m^2+2^2}\cdot
+    \frac{3\cdot 4}{m^2+4^2}\cdot\cdots\cdot
+    \frac{n(n-1)}{m^2+n^2}\\
+    &=\frac{n!(e^{mx}-1)}{m(m^2+4)(m^2+16)\cdots(m^2+n^2)}
+\end{align*}
+
+\section{} % Question 2
+\paragraph*{(a)}
+Through long division, we may see that:
+$$\begin{aligned}
+    -4x^4 &= -4(x^2-1)(x^2+1) - 4 \\
+    (1-x)^4 &= x^4 - 4x^3 + 6x^2 - 4x + 1 = (x^2+1)(x^2-4x+5) - 4
+\end{aligned}$$
+Therefore:
+$$\begin{aligned}
+    \frac{x^4(1-x)^4}{1+x^2} &= x^4(x^2-4x+5) - 4(x^2-1) - \frac{4}{x^2+1} \\
+    P(x) &= x^6 - 4x^5 + 5x^4 - 4x^2 +4 - \frac{4}{x^2+1}
+\end{aligned}$$
+Next:
+$$\begin{aligned}
+    \int_0^1 \frac{x^4(1-x)^4}{1+x^2} dx &= \int_0^1 (x^6 - 4x^5 + 5x^4 - 4x^2 +4) dx - 4\int_0^1 \frac{1}{x^2+1} dx \\
+    &= \frac{22}{7} - 4\tan^{-1}x \bigg|_0^1 \\
+    &= \frac{22}{7} - \pi
+\end{aligned}$$
+
+\paragraph*{(b)}
+$$\begin{aligned}
+    \int_{0}^{1} x^4(1-x)^4 dx &= \int_{0}^{1} x^8-4x^7+6x^6-4x^5+x^4 dx \\
+    &= (\frac{x^9}{9}-\frac{x^8}{2}+\frac{6x^7}{7}-\frac{2x^6}{3}+\frac{x^5}{5})\bigg|_0^1 \\
+    &= \frac{1}{630}
+\end{aligned}$$
+
+$$\begin{aligned}
+    &\forall x \in (0,1) ,\, 1 < 1+x^2 < 2 \\\\
+    &\Rightarrow \forall x \in (0,1) ,\, \frac{x^4(1-x)^4}{2} < \frac{x^4(1-x)^4}{1+x^2} < x^4(1-x)^4 \\\\
+    &\Rightarrow \frac{1}{1260} = \int_{0}^{1} \frac{x^4(1-x)^4}{2} dx < \int_0^1 \frac{x^4(1-x)^4}{1+x^2} dx < \int_{0}^{1} x^4(1-x)^4 dx = \frac{1}{630}
+\end{aligned}$$
+
+\section{} % Question 3
+\paragraph{(a)}~{}
+\\\\
+\def\d{\mathrm{d}}
+To figure out the recurrent relationship between $I_n$, $I_{n-1}$, and $I_{n-2}$, we use integrate by substitution
+\begin{flalign*}
+	\;&I_n(x)=\int_{-1}^{1}(1-z^2)^n\cos(xz) \d z
+	\\=&\int_{-1}^{1}\frac{1}{x}(1-z^2)^n\d\sin(xz)
+	\\=&\left[\frac{(1-z^2)^n}{x}\sin(zx)\right]_{-1}^{1}+\int_{-1}^{1}\sin(xz)\cdot \frac{1}{x}\cdot2zn(1-z^2)^{n-1}\d z
+	\\=&\int_{-1}^{1}\frac{n}{x^2}2z(1-z^2)^{n-1}d(-\cos xz )
+	\\=&\left[\frac{n}{x^2}\cdot 2z(1-z^2)^{n-1}\cos xz\right]_{-1}^{1}+\frac{1}{x^2}\cdot 2n\int_{-1}^{1}\cos(zx)\cdot(-2z^2(n-1)(1-z^2)^{n-2}+2(1-z^2)^{n-1})\d z
+    \\=&\frac{2n}{x^2}\cdot(-2)(n-1)\cdot \int_{-1}^{1}\cos(xz)z^2(1-z^2)^{n-2}\d z+\frac{2n}{x^2}\int_{-1}^{1}\cos(xz)(1-z^2)^{n-1}\d z
+    \\=&\frac{-4}{x^2}n(n-1)\cdot (I_{n-2}(x)-I_{n-1}(x))+\frac{2n}{x^2}I_{n-1}(x)
+    \\=&\frac{1}{x^2}2n(n-1)I_{n-1}(x)-\frac{1}{x^2}4n(n-1)I_{n-2}(x)
+\end{flalign*}
+hence multiply both side by $x^2$, we get:
+$$x^2I_{n}(x)=2n(2n-1)I_{n-1}(x)-4n(n-1)I_{n-2}(x)$$
+\paragraph{(b)}~{}
+\def\temp{\int_{-1}^{1}}
+\def\ca{\cos(xz)}
+\def\sa{\sin{xz}}
+First we verify the case for $I_0$ and $I_1$.
+$$I_0(x)=\temp \ca \d z=\left[\frac{\sa}{x}\right]_{-1}^{1}=\frac{\sin x}{x}\implies J_0(x)=\sin x$$
+\begin{flalign*}
+	I_1(x)=&\temp(1-z^2)\ca \d z
+	\\=&\left[\frac{\sa}{x}\right]_{-1}^{1}-\temp\frac{1}{x}z^2\d \sa
+	\\=&\frac{2\sin x}{x}-\left[\frac{z^2\sa}{x}\right]_{-1}^{1}+\temp\frac{2z\sa}{x}d z
+	\\=&-\temp\frac{2z}{x^2}\d \ca 
+	\\=&-\frac{2}{x^2}\left[z\ca\right]_{-1}^{1}+\frac{2}{x^2}\temp\ca \d z
+	\\=&\frac{4}{x^3}\sin x-\frac{4}{x^2}\cos x
+	\\\implies J_1(x)=&4\sin x-4x\cos x
+\end{flalign*} 
+This shows both $J_0(x)$, $J_1(x)$ can be rewrite in the following way: 
+$$J_0(x)=(0!)\left(P_0(x)\sin x+Q_0(x)\cos x\right)~,\quad J_1(x)=1!\left(P_1(x)\sin x+Q_1(x)\cos x\right)$$
+where $\deg P_0$, $\deg Q_0=0\le 0$ and $\deg P_1$, $\deg Q_1\le 1$
+\\Next assume that 
+$$J_n(x)=n!(P_n(x)\sin x+Q_n(x)\cos x)$$
+where $Q_n(x)$, $P_n(x)$ are polynomials with $\deg P_n$, $\deg Q_n\le n$ holds for $n=k-1$ and $n=k-2$.
+\\In \textbf{(a)} we've shown $$x^2I_{n}(x)=2n(2n-1)I_{n-1}(x)-4n(n-1)I_{n-2}(x)$$
+hence
+\begin{alignat*}{4}
+	 		 &&x^2I_{k}(x)&=&&2k(2k-1)I_{k-1}(x)-4k(k-1)I_{k-2}(x)
+	\\\implies&& x^{2k+1}I_k(x)&=&&2k(2k-1)x^{2k-1}I_{k-1}(x)-4k(k-1)x^{2k-1}I_{k-2}(x)
+	\\\implies&& J_k(x)&=&&2k(2k-1)J_{k-1}(x)-4k(k-1)x^2J_{k-2}(x)
+	\\\implies&& J_k(x)&=&&2k(2k-1)\cdot (k-1)!(P_{k-1}(x)\sin x+Q_{k-1}(x)\cos x)
+	\\&&\;&\;&&-x^2\cdot 4(k)(k-1)(k-2)!(P_{k-2}(x)\sin x+Q_{k-2}(x)\cos x)
+	\\\implies&& J_k(x)&=&&k!\cdot\left(\left((4k-2)P_{k-1}(x)-4x^2P_{k-2}(x)\right)\cdot\sin x+\left((4k-2)P_{k-2}(x)-4x^2Q_{k-2}(x)\right)\cdot \cos x \right)
+\end{alignat*}
+hence if we denote $P_k(x):=\left((4k-2)P_{k-1}(x)-4x^2P_{k-2}(x)\right)$ and $Q_k(x):=\left((4k-2)P_{k-2}(x)-4x^2Q_{k-2}(x)\right)$, then 
+$$J_k(x)=k!\cdot(\sin xP_k(x)+\cos xQ_{k}(x))$$
+Moreover, $P_k(x)$ and $Q_k(x)$ are both polynomials with integer coefficients, and \\
+$\deg P_k\le k-2+2=k$, $\deg Q_k\le k-2+2=k$, thus above statement also holds for $n=k$
+\\hence by induction we've shown that for any $n\in \N$, we have$$J_n(x)=n!(P_n(x)\sin x+Q_n(x)\cos x)$$
+where $Q_n(x), P_n(x)$ are polynomials with $\deg P_n, \deg Q_n\le n$
+
+\paragraph{(c)}~{}
+\subparagraph{(\romannumeral1)}~{}
+\\\\Using result from part \textbf{(b)}, we see that for any $n\in \N$ 
+$$J_n\left(\frac{\pi}{2}\right)=n!\left(P_n\left(\frac{\pi}{2}\right)\cdot \sin \frac{\pi}{2}+Q_n\left(\frac{\pi}{2}\right)\cdot \cos\frac{\pi}{2}\right)=n!\cdot P_n\left(\frac{\pi}{2}\right)$$
+hence if we write $\pi$ as $\frac{2a}{b}$ where both $a, b\in \N$, then
+\begin{alignat*}{4}
+	&&I_n\left(\frac{\pi}{2}\right)\cdot \left(\frac{\pi}{2}\right)^{2n+1}&=&&n!P_n\left(\frac{\pi}{2}\right)
+	\\\implies&&\left(\frac{a}{b}\right)^{2n+1}\cdot I_n\left(\frac{\pi}{2}\right)&=&&n!P_n\left(\frac{\pi}{2}\right)
+	\\\implies&&\frac{a^{2n+1}}{n!}I_n\left(\frac{\pi}{2}\right)&=&&b^{2n+1}\cdot P_n\left(\frac{\pi}{2}\right)	
+\end{alignat*}
+hence
+$$\frac{a^{2n+1}}{n!}I_n\left(\frac{\pi}{2}\right)=P_n\left(\frac{\pi}{2}\right)b^{2n+1}$$
+\subparagraph{(\romannumeral2)}~{}
+\\\\
+First we consider the left hand side of the equation.
+For $I_n(x)$, since $0<1-\cos(xz)<2$ and $0<(1-z^2)<1$ when $z\in [-1, 1]$, there is 
+$$0< \temp(1-z^2)\ca\d z\le2\cdot 2=4\implies 0< I_n(x)\le 4$$
+hence
+$$\text{LHS}=\frac{a^{2n+1}}{n!}I_n\left(\frac{\pi}{2}\right)\le 4\cdot \frac{a^{2n+1}}{n!}$$
+From 1023 we know:
+$$\lim\limits_{n\to \infty}\frac{c^n}{n!} \text{$\qquad$ where c is a constant} $$
+hence let $c=a^2$, then we see
+$$\lim\limits_{n\to \infty} \frac{(a^2)^n}{n!}=0\implies \lim\limits_{n\to \infty} 4a\frac{a^{2n}}{n!}=0 $$
+since $0< \dfrac{a^{2n+1}}{n!}I_n\left(\dfrac{\pi}{2}\right)\le 4\cdot \dfrac{a^{2n+1}}{n!}$, by squeeze theorem we get
+$$\lim\limits_{n\to \infty}\frac{a^{2n+1}}{n!}I_n\left(\frac{\pi}{2}\right)=0$$
+then we evaluate the right hand side:
+$$P_n\left(\frac{\pi}{2}\right)\cdot b^{2n+1}=P_n\left(\frac{a}{b}\right)\cdot b^{2n+1}$$
+here $P_n\left(\frac{a}{b}\right)$ is a polynomial of $\frac{a}{b}$ with $\deg P_n\le n$, hence each term in $b^{2n+1}P_n\left(\frac{a}{b}\right)$
+can be written as $c_i\cdot a^i\cdot b^{2n+1-i}$, where $i$ is an integer with $i\le n<2n+1$, and since $ a, b$ are both integers, each term of $P_n\left(\frac{a}{b}\right)$ is an integer, hence $P_n\left(\frac{a}{b}\right)\cdot b^{2n+1}$ is also an integer.
+\\\\Moreover, because $P_n\left(\frac{a}{b}\right)\cdot b^{2n+1}=I_n\left(\frac{\pi}{2}\right)\cdot \frac{a^{2n+1}}{n!}>0$ for any $n\in \N$, hence $P_n\left(\frac{a}{b}\right)\cdot b^{2n+1}$ is always a positive integer, and hence $P_n\left(\frac{a}{b}\right)\cdot b^{2n+1}>\frac{1}{2}$ for any $n\in \N$, and hence its limit can not be 0.
+\\\\Thus it contradicts with the equation $P_n\left(\frac{a}{b}\right)\cdot b^{2n+1}=I_n\left(\frac{\pi}{2}\right)\cdot \frac{a^{2n+1}}{n!}>0$ because the left hand side goes to $0$ as $n$ goes to infinity, while the right hand side is always a positive integer i.e. $\forall n\in \N$, $\text{RHS}\ge 1$.
+\\\\Thus the assumption is false, and consequently $\pi$ is not rational.
+
+\section{} % Question 4
+\paragraph{(a)}\textbf{Proof:}
+\\\\
+$$f_n(x)=\frac{1}{n!}x^n\sum_{j=0}^{n}C_n^j(-1)^jx^j=
+\sum_{j=0}^{n}\frac{1}{n!}C_n^j(-1)^jx^{n+j}$$
+$\therefore 0\leq k<n,f^{(k)}(0)=0$, which is an integer.\\
+$\therefore$ By using Taylor's expansion:
+$$\sum_{k=n+1}^{2n}\frac{f_n^{(k)}(0)}{k!}\cdot x^k=\sum_{j=0}^{n}\frac{1}{n!}C_n^j(-1)^jx^{n+j}$$
+$\therefore$ By comparing the coefficients:
+$$\frac{f_n^{(k)}(0)}{k!}=\frac{1}{n!}C^{k-n}_n(-1)^{k-n}\in \mathbb{Z} \; (0<k\leq 2n)$$
+Also note that  $f^{(k)}_n=1$ for $k>2n$, we can conclude that $\forall n,k\in \mathbb{N}$, $f^{(k)}_n$ is an integer.\\
+By noticing that
+$$f_n(x)=f_n(1-x)$$
+We have
+$$f^{(k)}_n(1-x)=(-1)^k f_n^{(k)}(x)$$
+So $\forall k,n\in \mathbb{N}$:
+ $$f^{(k)}_n(1)=(-1)^k f_n^{(k)}(0)\in \mathbb{Z},$$
+ which ends the proof.\\
+
+\paragraph*{(b)}\textbf{Proof:}
+\\\\
+Note that
+$$\frac{a}{b}\cdot F_n(1)-F_n(0)=\left[e^{mx}F_n(x)\right]^1_0=
+\int_{0}^{1}\frac{d}{dx}\left(e^{mx}F_n(x)\right)dx.$$
+It suffices to prove
+$$\int_{0}^{1}\frac{d}{dx}\left(e^{mx}F_n(x)\right)dx=
+\int_{0}^{1}m^{2n+1}e^{mx}f_n(x)dx$$
+Furthermore, it suffices to prove
+$$\frac{d}{dx}\left(e^{mx}F_n(x)\right)=
+m^{2n+1}e^{mx}f_n(x)$$
+Note that $f^{(k+1)}_n(x)=0$ when $k\geq 2n$:
+\begin{align*}
+    \frac{d}{dx}\left(e^{mx}F_n(x)\right)&=
+    e^{mx}\left(\frac{d}{dx}F_n(x)+mF_n(x)\right)\\
+    &=e^{mx}\left(\sum_{k=0}^{2n}(-1)^km^{2n-k}f_n^{(k+1)}+\sum_{k=0}^{2n}(-1)^k
+    m^{2n-(k-1)}f_n^{(k)}(x)\right)\\
+    &=m^{2n+1}e^{mx}f_n(x)+e^{mx}\left(\sum_{k=0}^{2n-1}(-1)^km^{2n-k}f_n^{(k+1)}(x)+\sum_{k=1}^{2n}(-1)^k
+    m^{2n-(k-1)}f_n^{(k)}(x)\right)\\
+    &=m^{2n+1}e^{mx}f_n(x)+e^{mx}\left(\sum_{k=0}^{2n-1}(-1)^km^{2n-k}f_n^{(k+1)}(x)-\sum_{k=1}^{2n}(-1)^{k-1}
+    m^{2n-(k-1)}f_n^{((k-1)+1)}(x)\right)\\
+    &=m^{2n+1}e^{mx}f_n(x)+e^{mx}\left(\sum_{k=0}^{2n-1}(-1)^km^{2n-k}f_n^{(k+1)}(x)-\sum_{k=0}^{2n-1}(-1)^k m
+    ^{2n-k}f_n^{(k+1)}(x)\right)\\
+    &=m^{2n+1}e^{mx}f_n(x),
+\end{align*}
+which ends the proof.\\
+
+\paragraph{(c)}\textbf{Proof:}
+\\\\
+By \textbf{(b)}, we already have
+$$aF_n(1)-bF_n(0)=b\int_{0}^{1}m^{2n+1}e^{mx}f_n(x)dx$$
+Note that
+$$0< b\int_{0}^{1}m^{2n+1}e^{mx}f_n(x)dx\leq bm\cdot e^m\cdot\int_{0}^{1}\frac{m^{2n}}{n!}=\frac{b\cdot m^{2n+1}}{n!}$$
+By $\lim_{n\to\infty}\frac{b\cdot m^{2n+1}}{n!}=0$, using squeeze theorem, we can get:
+$$\lim_{n\to\infty}aF_n(1)-bF_n(0)=0$$
+By \textbf{(a)}, we can find $aF_n(1)-bF_n(0)$ is an integer as well.
+Thus $\exists N$ s.t. $\forall n>N$, $aF_n(1)-bF_n(0)=0$.
+However, by$$b\int_{0}^{1}m^{2n+1}e^{mx}f_n(x)dx>0,$$
+it's impossible that $aF_n(1)-bF_n(0)=0$, which leads to a contradiction.
+Thus $e^m$ is irrational.
+
+\end{document}

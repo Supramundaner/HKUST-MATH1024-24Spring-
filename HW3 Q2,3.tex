@@ -1,0 +1,134 @@
+\documentclass{article}
+\usepackage[fontsize=11pt]{fontsize}
+\usepackage{CJK,indentfirst,graphicx,amsmath,amsfonts,mathabx, amsthm, amssymb, bm, hyperref, mathrsfs}
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{boondox-cal}
+\usepackage{color}
+\geometry{a4paper,scale=0.75}
+\setmainfont{Times New Roman}
+\title{ MATH1024 Problem Set 3}
+\author{ Group member:}
+\date{February 2024}
+\begin{document}
+\setlength {\parindent} {0pt}
+\maketitle
+
+\paragraph{2.}
+(a) Proof:\\
+Suppose $u(x)=g(x)$, then $$\int_{a}^{b} g^2(x)dx=0$$. \\
+According to Prop 4.12, as we have 
+$$g^2(x)\geq 0,$$
+$\therefore$ $g(x)=0$ for all $x\in[a,b]$\\
+(b) Proof:\\
+Firstly we justify that
+$$\int_{a}^{b}(h(x)-\underline{h})dx=0.$$
+Suppose $$H(x)=\int_{a}^{x}h(t)dt-\int_{a}^{x}\underline{h}dt,$$
+then $$H(b)=\int_{a}^{b}(h(t)-\underline{h})dt=\int_{a}^{b}h(t)dt-\int_{a}^{b}\underline{h}dt.$$
+Combining  with
+$$\underline{h}=\frac{1}{b-a}\int_{a}^{b}h(t)dt,$$
+we can find out that 
+$$H(b)=\int_{a}^{b}h(t)dt-\int_{a}^{b}h(t)dt=\int_{a}^{b}(h(t)-\underline{h})dt=0.$$
+Secondly we prove the $h$ is a constant function on $[a,b]$:
+Suppose $v(x)=h(x)-\underline{h}$
+\begin{align*}
+    \int_{a}^{b}h(x)u(x)dx&=\int_{a}^{b}(v(x)+\underline{h})u(x)dx\\
+    &=\int_{a}^{b}v(x)u(x)dx+\underline{h}\int_{a}^{b}u(x)dx\\
+    &=\int_{a}^{b}v(x)u(x)dx
+\end{align*}
+According to the previous deduction, we have
+$$\int_{a}^{b}v(x)dx=0$$
+Then let $u(x)=v(x)$, then
+$$\int_{a}^{b}v(x)u(x)=\int_{a}^{b}v^2(x)dx=0$$
+According to Prop 4.12, $v^2(X)=0$ for all $x\in [a,b]$, namely 
+$v(x)=0$. Recalling that $v(x)=h(x)-\underline{h}$, we have
+$$h(x)=\underline{h}$$
+Thus $h(x)$ is a constant function.
+
+\paragraph[short]{3.}
+Proof: \\
+(ii)$\implies$(i):
+\begin{align*}
+    y(t)&=\cos t+\int_{0}^{t}s^2\sin(s-t)y(s)ds\\
+    &=\cos t +\cos t\int_{0}^{t}s^2\sin s y(s)ds -\sin t\int_{0}^{t}
+    s^2\cos sy(s)ds
+\end{align*}
+So by differentiating $y(t)$, we can get:
+\begin{align*}
+    y'(t)&=-\sin t +\left(-\sin t \int_{0}^{t}s^2\sin s\cdot y(s)ds+
+    \sin t \cos t t^2 y(t)\right)-\left(\cos t \int_{0}^{t}
+    s^2 \cos s\cdot y(s)ds+\sin t \cos t t^2 y(t)\right)\\
+    &=-\sin t -\sin t \int_{0}^{t}s^2\sin s\cdot y(s)ds-
+    \cos t \int_{0}^{t}s^2 \cos s \cdot y(s)ds
+\end{align*}
+Furthermore, we can differentiate $y'(t)$ and get second derivative of $y(t)$:
+\begin{align*}
+    y''(t)&=-\cos t-\left(\cos t\int_{0}^{t}s^2\sin s \cdot y(s)ds+
+    \sin^2 t\cdot t^2y(t) \right)-\left(\sin t\int_{0}^{t}s^2\cos s\cdot y(s)ds+\cos^2 \cdot t^2y(t) \right)\\
+    &=-\left(\cos t +\cos t\int_{0}^{t}s^2\sin s \cdot y(s)ds-\sin t\int_{0}^{t}s^2\cos s\cdot y(s)ds\right)-\left(
+    (\sin^2 t+\cos^2 t)t^2y(t) \right)
+\end{align*}
+Recalling that 
+$$ y(t)=\cos t +\cos t\int_{0}^{t}s^2\sin s y(s)ds -\sin t\int_{0}^{t}
+s^2\cos sy(s)ds$$
+$$\sin^2 t+\cos^2 t=1$$
+We can rewrite $y''(t)$ as 
+$$y''(t)=-y(t)-t^2y(t)$$
+Also it's trivial to find that $y(0)=1,y'(0)=0$. Thus:
+$$y''(t)+(1+t^2)y(t)=0 \forall t\in\mathbb{R}, y(0)=1, y'(0)=0$$
+(i)$\implies$(ii):\\
+Denote
+$$f(t)=\cos t\int_{0}^{t}s^2\sin s y(s)ds 
+-\sin t\int_{0}^{t}s^2\cos sy(s)ds$$
+Then it's similar to the calculation on the above to get:
+$$f'(t)=-\sin t \int_{0}^{t}s^2\sin s\cdot y(s)ds-
+\cos t \int_{0}^{t}s^2 \cos s \cdot y(s)ds$$
+$$f''(t)=-\left(\cos t\int_{0}^{t}s^2\sin s \cdot y(s)ds-\sin t\int_{0}^{t}s^2\cos s\cdot y(s)ds\right)-
+    t^2y(t)$$
+Then rearrange the functions we have, we can easily find
+$$\left\{
+    \begin{aligned}
+        f''(t)=-f(t)-t^2y(t)\\
+        y''(t)=-y(t)-t^2y(t)
+    \end{aligned}
+\right.
+$$
+So we can find out
+$$f''(t)-y''(t)=-\left(f(t)-y(t)\right)$$
+Denote $\varphi (t)=f(t)-y(t)$, then $\varphi ''(x)=-\varphi (x)$.\\
+Let $g(t)=\frac{\varphi (t)}{\cos t} (t\neq\frac{\pi}{2}+k\pi)$,
+then differentiate $g(t)$, we can get:
+$$g'(t)=\frac{\varphi '(x)\cos t+\sin t\cdot \varphi (t)}{\cos^2 t}$$
+Denote $\lambda (x)=\varphi '(x)\cos t+\sin t \cdot \varphi (t)$, then
+differentiate $\lambda(t)$, we can get:
+\begin{align*}
+    \lambda'(t)&=\varphi ''(t)\cos t-\varphi '(t)\sin t+\varphi '(t)\sin t 
+    +\cos t\varphi(t)\\
+    &=\cos t(\varphi(x)+\varphi ''(x))\\
+    &=0
+\end{align*}
+Thus $\lambda(X)$ is a constant function.\\
+Recalling that $f(0)=0,y(0)=1,f'(0)=0,y'(0)=0$, we have
+$\varphi(0)=-1,\varphi'(0)=0$. \\
+Thus $\lambda(0)=0$, which means
+$g'(t)=0$.\\
+$\therefore g(t)=\frac{\varphi (t)}{\cos t}$ is a constant function.\\
+$\because \varphi(0)=-1,\cos 0=1$\\
+$\therefore g(0)=-1,g(t)=\frac{\varphi (t)}{\cos t}=-1((t\neq\frac{\pi}{2}+k\pi))$
+$\therefore \varphi (t)=-\cos t(t\neq\frac{\pi}{2}+k\pi)$\\
+For $t=\frac{\pi}{2}+k\pi(k\in\mathbb{Z})$, by the continuity of $\varphi (t)$, we can still get
+$$\varphi (t)=-\cos t$$
+Combining with $\varphi (t)=f(t)-y(t)$,
+\begin{align*}
+    y(t)&=f(t)-\varphi(t)\\
+    &=\cos t +\cos t\int_{0}^{t}s^2\sin s y(s)ds -\sin t\int_{0}^{t}
+    s^2\cos sy(s)ds\\
+    &=\cos t+\int_{0}^{t}s^2\sin(s-t)y(s)ds, \forall t\in\mathbb{R}
+\end{align*}
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,251 @@
+\documentclass{article}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, color, enumitem, float, fullpage, geometry, graphicx, hyperref, mathrsfs, setspace, subfigure, yhmath}
+\title{\LaTeX{} Answer to Problem Set \#}
+\author{AO Yuzhuo, JIN Zhibo, LYU Changlai\thanks{names listed in alphabetical order}}
+\date{\today}
+\begin{document}
+
+\newtheorem{Thm}{Theorem}[section]
+\newtheorem{Lem}[Thm]{Lemma}
+\newtheorem{Prop}[Thm]{Proposition}
+\newtheorem{Cor}[Thm]{Corollary}
+\newtheorem{Rem}[Thm]{Remark}
+\newtheorem{Def}[Thm]{Definition}
+\def\sep{\vspace{1cm}\hrule\vspace{1cm}}
+\def\tab{\;\;\;\;\;\;}
+\def\R{\mathbb{R}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\a{\alpha}
+\def\b{\beta}
+\def\c{\gamma}
+\def\d{\delta}
+\def\e{\epsilon}
+\def\p{\partial}
+\def\h{\theta}
+\def\w{\omega}
+\def\bu{\mathbf{u}}
+\def\bv{\mathbf{v}}
+\def\iff{\Longleftrightarrow}
+\def\oif{\Rightarrow}
+\def\to{\rightarrow}
+\def\inj{\hookrightarrow}
+\def\surj{\twoheadrightarrow}
+\def\imply{\Longrightarrow}
+\def\x{\times}
+\def\<{\langle}
+\def\>{\rangle}
+\def\oo{\infty}
+\def\normal{\triangleleft}
+\def\h{\hspace*{0.5cm}}
+\def\limsupa{\limsup\limits_{n\to\infty}{a_n}}
+\def\limsupb{\limsup\limits_{n\to\infty}{b_n}}
+\def\liminfa{\liminf\limits_{n\to\infty}{a_n}}
+\def\liminfb{\liminf\limits_{n\to\infty}{b_n}}
+\def\limsupn#1{\limsup\limits_{n\to\infty}\bigg({#1}\bigg)}
+\def\liminfn#1{\liminf\limits_{n\to\infty}\bigg({#1}\bigg)}
+\def\LIM{\text{LIM}}
+\def\seqa{\{a_n\}}
+\def\seqb{\{b_n\}}
+\def\sseqa{\{a_{n_k}\}}
+\def\st{\text{ s.t. } }
+\def\when{\text{ when }}
+\def\pnorm{|| \cdot ||_q}
+\def\qnorm{|| \cdot ||_p}
+\def\lp#1{|| {#1} ||_p}
+\def\lq#1{|| {#1} ||_q}
+
+\maketitle
+
+\everymath{\displaystyle}
+
+\section{}
+\paragraph[short]{(a)}
+{   Proof:\\
+    Firstly, we are going to prove that  for a continuous curve $\{r(t)\}_{t\in [a,b]}$
+    , if $\{r(t)\}_{t\in[a,c]}$ and $\{r(t)\}_{t\in[c,b]}$ are rectifiable for
+    some $c \in (a, b)$, then  $\{r(t)\}_{t\in [a,b]}$ is also rectifiable(i.e. Exercise 4.77):\\
+    Let $P$ be a partition of $[a, b]$, and let $P' = P \cup \{t\}$ be a partition of $[a, b]$.
+    $$P:a=t_0 < t_1 < \cdots < t_n = b$$
+    Thus:
+    \[P':a=t_0 < t_1 < \cdots < t_{i-1} < t < t_i < \cdots < t_n = b\]
+Thus:
+    \begin{align*}
+        L(r, P') - L(r, P)&= \sum_{j=1}^{i-1} |r(t_j) - r(t_{j-1})|+(|r(t) - r(t_{i-1})| + |r(t_i) - r(t)|)+\sum_{j=i+1}^{n} |r(t_j) - r(t_{j-1})| \\&- \sum_{j=1}^{n} |r(t_j) - r(t_{j-1})|\\
+        & = |r(t) - r(t_{i-1})| + |r(t_i) - r(t)| - |r(t_i) - r(t_{i-1})|\\
+        & \geq |r(t) - r(t_{i-1}) + r(t_i) - r(t)| + |r(t_i) - r(t_{i-1})|\\
+        & =0,
+    \end{align*}
+    which implies that $L(r, P') \geq L(r, P)$.\\
+    As $t$ is taken arbitrarily, we can let $t=c$.
+    Thus for any partition $P$ of $[a, b]$, we have 
+    \begin{align}
+        L(r, P) \leq L(r, P')=L(r,P'\cap[a,c])+L(r,P'\cap[c,b])\leq \sup_{P\cap[a,c]}l_p+\sup_{P\cap[c,b]}l_p.
+    \end{align}
+    Thus $\{r(t)\}_{t\in [a,b]}$ is also rectifiable.\\
+    Next we compute the arc length of $\{r(t)\}_{t\in [a,b]}$:\\
+    Note that $\forall$ partition $P_1$ of $[a,c]$ 
+    and $\forall$ partition $P_2$ of $[c,b]$, 
+    there exists a partition
+    \\$P_3=P_1\cup P_2\cup \{p\}$ ($p\in [a,b]$ and $p\notin P_1\cup P_2$ ) of $[a,b]$ such that $l_{p_3}\geq l_{p_1}+l_{p_2}$.\\
+    Thus  we have 
+    $$\sup_{P_1}l_{P_1}+\sup_{P_2}l_{P_2}\leq\sup_{P}l_p $$
+    By $(1)$, we have
+    $$\sup_{P_1}l_{P_1}+\sup_{P_2}l_{P_2}\geq\sup_{P}l_p $$
+    Thus we have
+    $$\sup_{P_1}l_{P_1}+\sup_{P_2}l_{P_2}=\sup_{P}l_p, $$
+    meaning that the arc length of $\{r(t)\}_{t\in [a,b]}$ is the sum of the arc 
+    lengths of \\ $\{r(t)\}_{t\in[a,c]}$ and $\{r(t)\}_{t\in[c,b]}$ \\\\
+    With the above consequences, we can derive the proof of (a) easily:\\
+    Split the interval $[a,b]$ into $n$ equal parts s.t. $\delta<\frac{b-a}{n}$(Denote by
+    $I_1,I_2,\cdots,I_{n}$).\\
+    Denote the arc length by $|\{r(t)\}_{t\in I}|$.\\
+    Then$\forall i\in \{1,2,\cdots,n\}$ we have $\{r(t)\}_{t\in I_i}$ is rectifiable as 
+    $l_{P_i}\leq \epsilon$ ($P_i$ can be any partition of $I_i$), $|\{r(t)\}_{t\in [I_i]}|$ exists.\\\\
+    Therefore trivilly by using the result of Exercise 4.77 and induction, we can derive that  $\{r(t)\}_{t\in [a,b]}$ is rectifiable. To be specific, we have:
+    $$|\{r(t)\}_{t\in [a,b]}|=\sum_{i=1}^{n}|\{r(t)\}_{t\in I_i}|$$
+
+}
+\paragraph[short]{(b)}{
+Firstly, as $f_1(t)=t\sin\frac{1}{t}$ and $f_2(t)=t\cos\frac{1}{t}$ are continuous on $\left[0,\frac{2}{\pi}\right]$,
+ we have $r(t)=(f_2(t),f_1(t))$ is continuous on $\left[0,\frac{2}{\pi}\right]$.\\
+ Now we are going to prove that $r(t)$ is not absolutely continuous on $\left[0,\frac{2}{\pi}\right]$:\\
+ By \textbf{1.(a)}, it suffices to show that $r(t)$ is not rectifiable on $\left[0,\frac{2}{\pi}\right]$.\\
+ To see why it is not rectifiable, we consider the sequence of partitions:
+$$P_n:0<\frac{1}{\frac{\pi}{2}+2n\pi}<\frac{1}{-\frac{\pi}{2}+2n\pi}<
+\frac{1}{\frac{\pi}{2}+2(n-1)\pi}<\frac{1}{-\frac{\pi}{2}+2(n-1)\pi}<\cdots
+<\frac{1}{\frac{\pi}{2}+2\pi}<\frac{1}{\frac{\pi}{2}}$$
+Then we have
+\begin{align*}
+    l_{P_n}&\geq \sum_{k=1}^{n}\left|r\left(\frac{1}{\frac{\pi}{2}+2k\pi}\right)
+    -r\left(\frac{1}{-\frac{\pi}{2}+2k\pi}\right)\right|    \\
+    &=\sum_{k=1}^{n}\left|\frac{1}{\frac{\pi}{2}+2k\pi}\cdot\sin\left(\frac{\pi}{2}+2k\pi\right)-\frac{1}
+    {-\frac{\pi}{2}+2k\pi}\cdot\sin\left(-\frac{\pi}{2}+2k\pi\right)\right|\\
+    &=\sum_{k=1}^{n}\left|\frac{1}{\frac{\pi}{2}+2k\pi}\cdot\sin\left(\frac{\pi}{2}\right)-\frac{1}
+    {-\frac{\pi}{2}+2k\pi}\cdot\sin\left(-\frac{\pi}{2}\right)\right|\\
+    &=\sum_{k=1}^{n}\left|\frac{1}{\frac{\pi}{2}+2k\pi}+\frac{1}
+    {2k\pi-\frac{\pi}{2}}\right|\\
+    &\geq \sum_{k=1}^{n}\left|\frac{2}{\frac{\pi}{2}+2k\pi}\right|\\
+    &\geq \sum_{k=1}^{n}\frac{2}{3k\pi}\\
+    &=\frac{2}{3\pi}\sum_{k=1}^{n}\frac{1}{k}
+\end{align*}
+Thus $l_{P_n}$ is unbounded as $n\to \infty$.\\
+Thus $r(t)$ is not rectifiable on $\left[0,\frac{2}{\pi}\right]$.\\
+
+
+}
+
+\section{}
+Since $f(x)$ is monotonely decreasing,
+$$\begin{aligned}
+    \forall k \in \{ 2,3,4, \cdots, n \} ,\, &\forall x \in [k-1,k], f(x) \ge f(k) \\
+    \implies &\int _{k-1}^{k} f(x) dx \ge \int _{k-1}^{k} f(k) dx = f(k) \\
+\end{aligned}$$
+Therefore,
+$$\begin{aligned}
+    &\sum _{k=2}^{n} f(k) \le \sum _{k=2}^{n} \int _{k-1}^{k} f(x) dx = \int_1^n f(x) dx \\
+    \implies &\sum _{k=1}^{n} f(k) - \int _1^n f(x) dx \le f(1) \\
+\end{aligned}$$
+Which shows that $x_n$ is bounded above by $f(1)$. Next,
+$$x_{n+1} - x_n = f(n+1) - \int _n^{n+1} f(x) dx \ge 0 $$
+which shows that $\{x_n\}$ monotonely increases. Together, it is sufficient to state that $\{x_n\}$ converges.
+
+\section{}
+Let $r_n := \frac{a(a+1)(a+2)\cdots (a+n)}{b(b+1)(b+2)\cdots (b+n)}$. $\forall b>0$:
+
+\paragraph{Case 1: $a\ge b$}
+$$\forall a \ge b ,\, \forall n \in \mathbb{N} ,\, r_n \ge 1 \implies \sum_{n=1}^{\infty} r_n \ge \lim_{n\to\infty} n = +\infty$$
+which implies that $\sum_{n=1}^{\infty} r_n$ diverges.
+
+\paragraph{Case 2: $b-1<a<b$}
+$$\begin{aligned}
+    n\left(1-\frac{r_{n+1}}{r_n}\right) = \frac{(b-a)n}{b+n+1} \to b-a < 1 \quad \text{as } n\to\infty
+\end{aligned}$$
+By Raabe's Test, this confirms that $\sum_{n=1}^{\infty} r_n$ diverges.
+
+\paragraph{Case 3: $a=b-1$}
+Now $r_n = \frac{a}{a+n+1}$
+$$\begin{aligned}
+    \forall n>>1,\, 2a\cdot n > a\cdot n+a^2+a \implies &\frac{a}{a+n+1} > \frac{a}{2n} \\
+    \implies &\sum_{n=1}^{\infty} r_n \ge \sum_{n=1}^{\infty} \frac{a}{2n} = +\infty
+\end{aligned}$$
+which implies that $\sum_{n=1}^{\infty} r_n$ diverges.
+
+\paragraph{Case 4: $a<b-1$}
+$$\begin{aligned}
+    n\left(1-\frac{r_{n+1}}{r_n}\right) = \frac{(b-a)n}{b+n+1} \to b-a > 1 \quad \text{as } n\to\infty
+\end{aligned}$$
+By Raabe's Test, this confirms that $\sum_{n=1}^{\infty} r_n$ converges.
+\\\\\\
+In the above sections, we only discuss the scenarios in which $a,b>0$; for those which does not conform, we do not concern.
+In conclusion, $\sum_{n=1}^{\infty} r_n$ converges if and only if $0<a<b-1$.
+
+\section{}
+First we consider Taylor expansion of function $f(t):=(n+t)(\log (n+t))^p $ at $t=0$.
+\begin{align*}
+ f(0)&=n(\log n)^p\\
+ f'(0)&=(\log n)^p + p(\log n)^{p-1}\\
+ f''(0)&=\frac{p(\log n)^{p-1}}{n}+ \frac{p(p-1)(\log n)^{p-2}}{n}\\
+\end{align*}
+Thus by Lagrange remainder theorem:
+\begin{flalign*}
+f(t)&=f(0)+f'(0)t+\frac{f''(c)}{2}t^2\\
+&=n(\log n)^p + (\log n)^p t + p(\log n)^{p-1}t + \frac{1}{n} \frac{p(\log (n+c))^{p-1} + (p-1)(\log (n+c))^{p-2}}{2}t^2
+\end{flalign*}
+where $c$ is a real number between $0$ and $t$.\\\\
+Let $t=1$:
+$$f(1)=(n+1)(\log (n+1))^p=n(\log n)^p + (\log n)^p + p(\log n)^{p-1} + \frac{p(\log (n+c_1))^{p-1} + (p-1)(\log (n+c_1))^{p-2}}{2n}$$
+Thus, 
+$$\frac{b_n}{b_{n+1}}=\frac{(n+1)(\log (n+1))^p}{ n(\log n)^p}=1+\frac{1}{n} +\frac{p}{n \log n} + \frac{p(\log (n+c_1))^{p-1} + (p-1)(\log (n+c_1))^{p-2}}{ 2n^2 (\log n)^p}$$
+Then consider the term $\frac{p(\log (n+c_1))^{p-1} + (p-1)(\log (n+c_1))^{p-2}}{ 2n^2 (\log n)^p}$:
+\begin{flalign*}
+  \;&\frac{\frac{p(\log (n+c_1))^{p-1} + (p-1)(\log (n+c_1))^{p-2}}{ 2n^2 (\log n)^p}}{(n\log n)^{-1}}\\
+  =&\frac{\log n}{2n (log n)^p} \left(p\log(n+c_1)^{p-1}+(p^2-p)\cdot (\log (n+c_1))^{p-2}\right)\\
+ \le& \frac{1 }{n} \cdot \left(p(\log (n+c_1))^p +(p^2-p)\cdot (\log (n+c_1))^{p-1} \right)
+\end{flalign*}
+for the right hand side of the inequality, since we have
+$$\lim\limits_{n\to +\oo} \frac{(\log (n+c_1))^p}{n}=0 \text{ where $p$ and $c_1$ are fixed constant }$$
+Thus
+$$\lim\limits_{n\to +\oo}  \frac{1 }{n} \cdot \left(p(\log (n+c_1))^p +(p^2-p)\cdot (\log (n+c_1))^{p-1} \right)=0+0=0$$
+moreover, $\forall n \in \N$:
+$$0\le \frac{\dfrac{p(\log (n+c_1))^{p-1} + (p-1)(\log (n+c_1))^{p-2}}{ 2n^2 (\log n)^p}}{(n\log n)^{-1}} \le \frac{ \left(p(\log (n+c_1))^p +(p^2-p)\cdot (\log (n+c_1))^{p-1} \right) }{n}$$
+Thus by Squeeze Theorem, we have
+$$\lim\limits_{n\to +\oo}\frac{\dfrac{p(\log (n+c_1))^{p-1} + (p-1)(\log (n+c_1))^{p-2}}{ 2n^2 (\log n)^p}}{(n\log n)^{-1}}=0$$
+Thus
+$$\frac{b_n}{b_{n+1}}= 1+\frac{1}{n} +\frac{p}{n \log n} + \frac{p(\log (n+c_1))^{p-1} + (p-1)(\log (n+c_1))^{p-2}}{ 2n^2 (\log n)^p}=1+\frac{1}{n}+\frac{p}{n\log n}+o\left(\frac{1}{n\log n}\right)$$
+\paragraph{(b)}~{}
+\\\\
+From $(a)$ we have:
+$$\frac{b_n}{b_{n+1}}=1+\frac{1}{n}+\frac{p}{n\log n}+o\left(\frac{1}{n\log n}\right)$$
+hence
+$$\lim\limits_{n\to +\oo}\frac{\frac{b_n}{b_{n+1}}-1-\frac{1}{n}-\frac{p}{n\log n}}{\frac{1}{n\log n }}=0$$
+$$\imply \lim\limits_{n\to +\oo} \left(n\log n\left(\frac{b_n}{b_{n+1}}-1 \right)-\log n -p \right) = 0$$ 
+$$\imply \lim\limits_{n\to +\oo } \left(n\log n\left(\frac{b_n}{b_{n+1}}-1 \right)-\log n \right)=p$$
+given that
+$$\lim\limits_{n\to +\oo } \left(n\log n\left(\frac{a_n}{a_{n+1}}-1 \right)-\log n \right)=L$$   
+thus by arithmetic rules
+$$\lim\limits_{n\to +\oo} \left(n\log n \left(\frac{a_n}{a_{n+1}}-\frac{b_n}{b_{n+1}} \right)\right)=L-p$$
+Let $p:=\frac{L+1}{2} >\frac{1+1}{2} =1$, and define $g(x):=\frac{1}{x(\log x)^p}$, then $b_n = g(n)$, and:
+\begin{flalign*}
+  \;\int_{2}^{+\oo}g(x)dx
+  = &\int_{2}^{+\oo}\frac{1}{x(\log x)^p}dx\\
+  = &\lim\limits_{M\to +\oo} \int_{2}^{M}\frac{1}{x(\log x)^p}dx\\
+  = &\lim\limits_{M\to +\oo} \int_{2}^{M}\frac{1}{(\log x)^p}d(\log x)\\
+  = &\lim\limits_{M\to +\oo} \int_{\log 2}^{\log M}u^{-p}du\\
+  = &\lim\limits_{M\to +\oo} \left[\frac{u^{-p+1}}{-p+1}\right]_{\log 2}^{\log M}\\
+  = &\lim\limits_{M\to +\oo} \left(\frac{(\log M)^{1-p}-(\log 2)^{1-p}}{1-p}\right)\\
+  = &\lim\limits_{M\to +\oo} \left(-\frac{1}{(p-1)(\log M)^{p-1}}+\frac{1}{(p-1)(\log 2)^{p-1}} \right)\\
+  = &\frac{1}{(p-1)(\log 2)^{p-1}}\\
+\end{flalign*}
+Thus by integral test, $\sum_{n=1}^{+\oo} b_n$ converges.\\
+Moreover, 
+$$\lim\limits_{n\to +\oo} \left(n\log n \left(\frac{a_n}{a_{n+1}}-\frac{b_n}{b_{n+1}} \right)\right)=L-p=\frac{L-1}{2}>0 $$
+hence by comparison rules, 
+$$\exists N\in \R \st \forall n>N, n\log n \left(\frac{a_n}{a_{n+1}}-\frac{b_n}{b_{n+1}} \right)>0\imply \frac{a_n}{a_{n+1}}>\frac{b_n}{b_{n+1}}$$
+This shows for $n>>1$, we have
+$$\frac{a_{n+1}}{a_n} < \frac{b_{n+1}}{b_n} \text{ since $a_n, b_n>0$ }$$   
+Thus by ratio comparison test, $\sum_{n=1}^{+\oo} a_n$ converges.
+
+\end{document}

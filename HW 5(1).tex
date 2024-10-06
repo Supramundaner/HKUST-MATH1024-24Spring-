@@ -1,0 +1,254 @@
+\documentclass{article}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, color, float, geometry, graphicx, mathrsfs, setspace, subfigure, yhmath}
+\title{\LaTeX{} Answer to Problem Set \#5}
+\author{AO Yuzhuo, JIN Zhibo, LYU Changlai\thanks{names listed in alphabetical order}}
+\date{\today}
+\everymath{\displaystyle}
+
+\newtheorem{Thm}{Theorem}[section]
+\newtheorem{Lem}[Thm]{Lemma}
+\newtheorem{Prop}[Thm]{Proposition}
+\newtheorem{Cor}[Thm]{Corollary}
+\newtheorem{Rem}[Thm]{Remark}
+\newtheorem{Def}[Thm]{Definition}
+\def\sep{\vspace{1cm}\hrule\vspace{1cm}}
+\def\tab{\;\;\;\;\;\;}
+\def\R{\mathbb{R}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\a{\alpha}
+\def\b{\beta}
+\def\c{\gamma}
+\def\d{\delta}
+\def\e{\epsilon}
+\def\p{\partial}
+\def\h{\theta}
+\def\w{\omega}
+\def\bu{\mathbf{u}}
+\def\bv{\mathbf{v}}
+\def\iff{\Longleftrightarrow}
+\def\oif{\Rightarrow}
+\def\to{\rightarrow}
+\def\inj{\hookrightarrow}
+\def\surj{\twoheadrightarrow}
+\def\imply{\Longrightarrow}
+\def\x{\times}
+\def\<{\langle}
+\def\>{\rangle}
+\def\oo{\infty}
+\def\normal{\triangleleft}
+\def\h{\hspace*{0.5cm}}
+\def\limsupa{\limsup\limits_{n\to\infty}{a_n}}
+\def\limsupb{\limsup\limits_{n\to\infty}{b_n}}
+\def\liminfa{\liminf\limits_{n\to\infty}{a_n}}
+\def\liminfb{\liminf\limits_{n\to\infty}{b_n}}
+\def\limsupn#1{\limsup\limits_{n\to\infty}\bigg({#1}\bigg)}
+\def\liminfn#1{\liminf\limits_{n\to\infty}\bigg({#1}\bigg)}
+\def\LIM{\text{LIM}}
+\def\seqa{\{a_n\}}
+\def\seqb{\{b_n\}}
+\def\sseqa{\{a_{n_k}\}}
+\def\st{\text{ s.t. } }
+\def\when{\text{ when }}
+
+\begin{document}
+\maketitle
+
+\section{}
+As we know
+\paragraph{Right Sum}
+$$\begin{aligned}
+    &f'(x) = -2xe^{-x^2} \\
+    &\forall x \in [2,3] ,\, f''(x)>0 \implies f'(x) \text{ monotonely increases on } [2,3] \\
+    &\sup_{[2,3]} \left|f'(x)\right| = \left|f'(2)\right| < 0.0733 =: m_1
+\end{aligned}$$
+To keep the ‘3 sig. fig.’ approximation accurate, it is sufficient to let $\left| \int_a^b f(x)dx - R_n \right| < \frac{1}{100}R_n$.
+Through simple trials, we estimated that $0.004<R_n<0.005$.
+\\\\
+Therefore, $\left| \int_a^b f(x)dx - R_n \right| < 5\times 10^{-5} \Longleftarrow \frac{m_1}{2n} < 5\times 10^{-5} \Longleftarrow n \ge 733$ suffices our need.
+\\\\
+However, to my preference, I chose $n=1000$. :)
+
+\paragraph{Trapezoidal Rule}
+$$\begin{aligned}
+    &f''(x) = (4x^2-2)e^{-x^2} ,\, f'''(x) = (-8x^3+12x)e^{-x^2} \\
+    &\forall x \in [2,3] ,\, f'''(x)<0 \implies f''(x) \text{ monotonely decreases on } [2,3] \\
+    &\sup_{[2,3]} \left|f''(x)\right| = \left|f''(2)\right| < 0.2565 =: m_2
+\end{aligned}$$
+Therefore, $\left| \int_a^b f(x)dx - T_n \right| < 5\times 10^{-5} \Longleftarrow \frac{m_2}{12n^2} < 5\times 10^{-5} \Longleftarrow n \ge 21$ suffices our need.
+\\\\
+However, to play safe, I chose $n=200$. :)
+
+\paragraph{Simpson's Rule}
+Claim: $n=200$ suffices this approximation. After trial, we see that it is true. :)
+
+\section{}
+\paragraph{(a)}
+Since $P_i(x)$ is a uniform partition, denote $\Delta x := \dfrac{b-a}{3n}$:
+
+$$\begin{aligned}
+    &\forall i \in \{0,1,2,\cdots,n-1\}, P_i(x) = \frac{(x-x_{3i+1})(x-x_{3i+2})(x-x_{3i+3})}{-6\Delta x^3} f(x_{3i}) + \cdots \\
+    &\int_{x_{3i}}^{x_{3i+3}} P_i(x) = -\frac{f(x_{3i})}{6\Delta x^3} \int_{x_{3i}}^{x_{3i+3}} (x-x_{3i+1})(x-x_{3i+2})(x-x_{3i+3}) d\left(x-x_{3i+2}\right) + \cdots - \cdots + \cdots \\
+\end{aligned}$$
+We consider each part respectively:
+$$\begin{aligned} x_{3i} \text{ part: }& -\frac{f(x_{3i})}{6\Delta x^3} \int_{x_{3i}}^{x_{3i+3}} (u^3-u\cdot\Delta x^2) \,du = -\frac{9}{4} \cdot \Delta x \cdot f(x_{3i}) \\
+x_{3i+1} \text{ part: }& \frac{f(x_{3i+1})}{6\Delta x^3} \int_{x_{3i}}^{x_{3i+3}} (u+2\Delta x)\cdot u\cdot (u-\Delta x) \,du = \frac{9}{4} \cdot \Delta x \cdot f(x_{3i+1}) \\
+x_{3i+2} \text{ part: }& \frac{f(x_{3i+2})}{6\Delta x^3} \int_{x_{3i}}^{x_{3i+3}} (u+\Delta x)\cdot u\cdot (u-2\Delta x) \,du = \frac{9}{4} \cdot \Delta x \cdot f(x_{3i+2}) \\
+x_{3i+3} \text{ part: }& \frac{f(x_{3i+3})}{6\Delta x^3} \int_{x_{3i}}^{x_{3i+3}} (u^3-u\cdot\Delta x^2) \,du = \frac{9}{4} \cdot \Delta x \cdot f(x_{3i+3}) \\
+\end{aligned}$$
+Altogether:
+$$\begin{aligned}
+    \int_{x_{3i}}^{x_{3i+3}} P_i(x) = \frac{9}{4} \cdot \Delta x \left( -f(x_{3i}) + f(x_{3i+1}) + f(x_{3i+2}) + f(x_{3i+3}) \right)
+\end{aligned}$$
+
+\paragraph{(b)}
+First lets consider the taylor approximation of $f$ at $x_{3i}$:
+$$f(x)=f(x_{3i})+f'(x_{3i})(x-x_{3i})+\frac{f''(x_{3i})}{2}(x-x_{3i})^2+\frac{f^{(3)}(x_{3i})}{3!}(x-x_{3i})^3+\frac{f^{(4)}(h(x))}{4!}(x-x_{3i})^4 $$
+note that the last term $\frac{f^{(4)}(h(x))}{4!}(x-x_{3i})^4$ is given by \textit{Lagrange~remainder~theorem} and \\$$h(x)\in[x_{3i},x_{3i}+3\Delta x]\subset[a, b]$$\\
+denote $$H_i(x)=f(x_{3i})+f'(x_{3i})(x-x_{3i})+\frac{f''(x_{3i})}{2}(x-x_{3i})^2+\frac{f^{(3)}(x_{3i})}{3!}(x-x_{3i})^3$$
+hence
+\begin{flalign*}
+    f(x_{3i}+\Delta x)&=H_i(x_{3i}+\Delta x)+\frac{f^{(4)}(h(x_{3i}+\Delta x))}{4!}(x-x_{3i})^4\\
+    f(x_{3i}+2\Delta x)&=H_i(x_{3i}+2\Delta x)+\frac{f^{(4)}(h(x_{3i}+2\Delta x))}{4!}(x-x_{3i})^4\\
+    f(x_{3i}+3\Delta x)&=H_i(x_{3i}+3\Delta x)+\frac{f^{(4)}(h(x_{3i}+3\Delta x))}{4!}(x-x_{3i})^4
+\end{flalign*}
+then we evaluate $\bigg|\int_{x_{3i}}^{x_{3i}+3\Delta x}P_i(x)dx-\int_{x_{3i}}^{x_{3i}+3\Delta x}H_i(x)dx\bigg|$
+Previously we've shown that 
+$$\int_{x_{3i}}^{x_{3i}+3\Delta x}P_i(x)dx=\frac{3\Delta x}{8}\left(f(x_{3i})+3f(x_{3i}+\Delta x)+3f(x_{3i}+2\Delta x)+f(x_{3i}+3\Delta x)\right)$$
+thus we substitute $f(x)$ with $H_i(x)+\frac{f^{(4)}(h(x))}{4!} (x-x_i)^4$ and evaluate the integral:
+\begin{flalign*}
+    \;&\int_{x_{3i}}^{x_{3i}+3\Delta x}H_i(x)dx\\
+    =&\Delta x\cdot \frac{3}{8}\cdot (f(x_{3i})+3f(x_{3i}+\Delta x)+3f(x_{3i}+2\Delta x)+f(x_{3i}+3\Delta x))\\
+    =&\Delta x\cdot \frac{3}{8}\cdot \bigg(8\cdot f(x_{3i})+12\Delta x\cdot f'(x_{3i})+12(\Delta x)^2\cdot f''(x_{3i})+9(\Delta x)^3\cdot f^{(3)}(x_{3i})\\    
+    \;&+\frac{1}{24}\cdot (\Delta x)^4\cdot \left(3f^{(4)}\left(h(x_{3i}+\Delta x)\right)+48f^{(4)}\left(h(x_{3i}+2\Delta x)\right)+81f^{(4)}\left(h(x_{3i}+3\Delta x)\right)\right) \bigg)\\
+    =&3\Delta x\cdot f(x_{3i})+\frac{9}{2} (\Delta x)^2\cdot f'(x_{3i})+\frac{9}{2} (\Delta x)^3\cdot f''(x_{3i})+\frac{27}{8}(\Delta x)^4\cdot f^{(3)}(x_{3i})\\
+    \;&+\frac{3}{64}(\Delta x)^5\cdot \left(f^{(4)}(h(x_{3i}+\Delta x))+16f^{(4)}(h(x_{3i}+2\Delta x))+27f^{(4)}(h(x_{3i}+3\Delta x))\right)\\
+\end{flalign*}
+and integrate $H_i(x)$ over $[x_{3i},x_{3i}+3\Delta x]$ we have:
+$$\int_{x_{3i}}^{x_{3i}+3\Delta x}H_i(x)dx=3\Delta x\cdot f(x_{3i})+\frac{9}{2} (\Delta x)^2\cdot f'(x_{3i})+\frac{9}{2} (\Delta x)^3\cdot f''(x_{3i})+\frac{27}{8}(\Delta x)^4\cdot f^{(3)}(x_{3i})$$
+hence:
+\begin{flalign*}
+    \;&\bigg|\int_{x_{3i}}^{x_{3i}+3\Delta x}P_i(x)dx-\int_{x_{3i}}^{x_{3i}+3\Delta x}H_i(x)dx\bigg|\\
+    =&\frac{3}{64}(\Delta x)^5\cdot \left(f^{(4)}(h(x_{3i}+\Delta x))+16f^{(4)}(h(x_{3i}+2\Delta x))+27f^{(4)}(h(x_{3i}+3\Delta x))\right)\\
+    \le& \sup\limits_{[a, b]}|f^{(4)}|\cdot \frac{3}{64}(\Delta x)^5\cdot (1+16+27)\\
+    =&\sup\limits_{[a, b]}|f^{(4)}|\cdot \frac{33}{16}(\Delta x)^5
+\end{flalign*}
+and:
+\begin{flalign*}
+    \;&\left|\int_{x_{3i}}^{x_{3i}+3\Delta x}f(x)dx-\int_{x_{3i}}^{x_{3i}+3\Delta x}H_i(x)dx\right|\\
+    =&\left|\int_{x_{3i}}^{x_{3i}+3\Delta x}\frac{f^{(4)}(h(x))}{4!}(x-x_{3i})^4dx\right|\\
+    \le&\int_{x_{3i}}^{x_{3i}+3\Delta x}\left|\frac{f^{(4)}(h(x))}{4!}(x-x_{3i})^4\right|dx\\
+    \le&\int_{x_{3i}}^{x_{3i}+3\Delta x}\frac{(x-x_{3i})^4}{4!}\sup\limits_{[a, b]}\left|f^{(4)}\right|dx\\
+    =&\frac{243}{5!}\sup\limits_{[a, b]}\left|f^{(4)}\right|\cdot (\Delta x)^5
+\end{flalign*}
+thus
+\begin{flalign*}
+    \;&\left|\int_{x_{3i}}^{x_{3i}+3\Delta x}P_i(x)dx-\int_{x_{3i}}^{x_{3i}+3\Delta x}f(x)dx\right|\\
+    \le&\left|\int_{x_{3i}}^{x_{3i}+3\Delta x}f(x)dx-\int_{x_{3i}}^{x_{3i}+3\Delta x}H_i(x)dx\right|+\left|\int_{x_{3i}}^{x_{3i}+3\Delta x}P_i(x)dx-\int_{x_{3i}}^{x_{3i}+3\Delta x}H_i(x)dx\right|\\
+    \le& C(\Delta x)^5\sup\limits_{[a, b]}\left|f^{(4)}\right|
+\end{flalign*}
+Where $C$ is a constant independent of $\Delta x$. This gives the error bound.
+
+\section{}
+First we consider $\int_{nT}^{(n+1)T}\left|\frac{f(x)}{x}\right| dx$ where $n\in \N$ and $T>0$.\\
+Given $f(x)$ is continuous in $\R$, for any $a\in [nT, (n+1)T]$, we have $\lim\limits_{x\to a}\left|f(x)-f(a)\right|=0$\\
+and: $0\le \left| |f(x)|-|f(a)|\right| \le \left|f(x)-f(a)\right|$\\
+thus by squeeze theorem we have $\lim\limits_{x\to a}\left| |f(x)|-|f(a)|\right|=0$\\
+hence $|f(x)|$ is continuous in $[nT, (n+1)T]$\\
+hence $\frac{|f(x)|}{x}$ is continuous in $[nT, (n+1)T]$ since $x>0$ whenever $x\in [nT, (n+1)T]$\\
+Moreover we've shown in previous homework that for a continuous non-negative function $g(x)$,
+$$\int_{a}^{b}g(x)dx=0 \implies g(x) \equiv 0 $$
+hence 
+$$\frac{|f(x)|}{x} \not\equiv 0 \implies \int_{nT}^{(n+1)T}\frac{|f(x)|}{x}dx\neq 0$$
+thus $\int_{nT}^{(n+1)T}\frac{|f(x)|}{x}dx >0 $.  
+Moreover, we know that 
+$$\exists c\in [nT, (n+1)T] \st \left|\frac{f(c)}{c}\right|\cdot T = \int_{nT}^{(n+1)T}\frac{|f(x)|}{x}dx $$
+thus for such $c$ we have $\left|\frac{f(c)}{c}\right|\cdot T >0$ and 
+$$\int_{nT}^{(n+1)T}\frac{|f(x)|}{x}dx=\left|\frac{f(c)}{c}\right|\cdot T > \left|\frac{f(c)}{(n+1)T}\right| \cdot T=\frac{|f(c)|}{n+1}$$
+By the fact that $f$ is a periodic function, choose $m, n\in N$, then 
+$$\int_{mT}^{(m+1)T}f(x)dx=\int_{nT}^{(n+1)T}f(x)dx$$
+thus
+$$\int_{mT}^{(m+1)T}\frac{|f(x)|}{x}dx > \frac{|f(c)|}{n+1}$$
+This shows for any $n\in \N$ we have $\int_{nT}^{(n+1)T}\frac{|f(x)|}{x}dx > \frac{|f(c)|}{n+1}$\\
+Then, choose $m\in \N$ such that $mT>1$ (by \textit{Archimedean Property} such $m$ exists)\\
+then for any $n\in \N$ and $n>m$ we have
+$$\int_{mT}^{nT}\frac{|f(x)|}{x}dx \le  \int_{1}^{+\oo}\left|\frac{f(x)}{x}\right|dx$$
+$$\imply \int_{1}^{+\oo}\left|\frac{f(x)}{x}\right|dx \ge \int_{mT}^{nT}\frac{|f(x)|}{x}dx > \sum_{k=m}^{n-1}\frac{|f(c)|}{k+1}=|f(c)|\cdot \sum_{k=m+1}^{n}\frac{1}{k} $$
+Moreover from 1023 we know that $\sum_{k=m}^{+\oo}\frac{1}{k}=+\oo$ diverges, hence $\int_{mT}^{nT}\left|\frac{f(x)}{x}\right| dx=+\oo$, and by comparison test we have
+$$\int_{1}^{+\oo}\left|\frac{f(x)}{x}\right|dx=+\oo$$
+
+\section{}
+\paragraph{(a)}\ \\
+Firstly we have $\frac{t^{s-1}}{e^t-1}>0$, $\frac{t^{s-1}}{e^{nt}}>0$ for $t>0$.\\
+For the first one:
+\begin{align*}
+    \int_{0}^{\infty}\frac{t^{s-1}}{e^t-1}dt&=\int_{0}^{1}\frac{t^{s-1}}{e^t-1}dt+
+    \int_{1}^{\infty}\frac{t^{s-1}}{e^t-1}dt\\
+    &=\lim_{a\to0} \int_{a}^{1}\frac{t^{s-1}}{e^t-1}dt+
+    \lim_{b\to\infty}\int_{1}^{b}\frac{t^{s-1}}{e^t-1}dt
+\end{align*}
+It suffices to show that both limits converge.\\
+By Taylor's expansion:
+$$e^t-1>t ,\, e^t-1>\frac{1}{\lceil 2s\rceil!}t^{\lceil 2s\rceil}$$
+So 
+$$0<\frac{t^{s-1}}{e^t-1}<t^{s-2} , 0<\frac{t^{s-1}}{e^t-1}<{t^{s-1-\lceil 2s\rceil}}\cdot{\lceil 2s\rceil!}$$
+For we have:
+$$0<\int_{a}^{1}\frac{t^{s-1}}{e^t-1}dt<\int_{0}^{1}
+t^{s-2}dt=\left[t^{s-1}/(s-1)\right]^{1}_0(0<a<1)$$
+$$0<\int_{1}^{b}\frac{t^{s-1}}{e^t-1}dt<\int_{1}^{\infty}\left({t^{s-1-\lceil 2s\rceil}}\cdot{\lceil 2s\rceil!}\right)dt=\frac{{-\lceil 2s\rceil!}}{(s-\lceil 2s\rceil)}(b>1)$$
+$\therefore$ The functions
+$$F(x)=\int_{-x}^{1}\frac{t^{s-1}}{e^t-1}dt(-1<x<0),G(x)=\int_{1}^{x}\frac{t^{s-1}}{e^t-1}dt(x>1)$$
+are all monotone and bounded\\
+$\therefore$ Both limits converge.(i.e.$\int_{0}^{\infty}\frac{t^{s-1}}{e^t-1}dt$ converges)\\
+For the second one:\\
+$$\int_{0}^{\infty}\frac{t^{s+1}}{e^{nt}}=\int_{0}^{1}\frac{t^{s+1}}{e^{nt}}
++\lim_{b\to\infty}\int_{1}^{b}\frac{t^{s+1}}{e^{nt}}$$
+Thus it suffices to prove
+$\lim_{b\to\infty}\int_{1}^{b}\frac{t^{s+1}}{e^{nt}}$ converges.\\
+$\because \lim_{t\to\infty}\frac{t^{s+1}}{e^{nt}}=0$, $\exists N,$ s.t.$\forall t>N,$
+$\frac{t^{s-1}}{t^{s+1}}>\frac{t^{s-1}}{e^{nt}}>0$\\
+$\therefore$ By the comparison test, it suffices to prove
+$$\int_{1}^{\infty}\frac{t^{s-1}}{t^{s+1}}dt=\int_{1}^{\infty}\frac{1}{t^2}dt$$
+converges, which is trivial.
+
+\paragraph{(b)}Proof: \\
+\begin{align*}
+    n^s\int_{0}^{\infty}t^{s-1}e^{-nt}dt&=
+    \lim_{b\to\infty}n^s\int_{0}^{b}t^{s-1}e^{-nt}dt\\
+    &=\lim_{b\to\infty}n\int_{0}^{b}(nt)^{s-1}e^{-nt}dt\\
+\end{align*}
+By substituting $nt$ with $x$ and the composition rule, we have
+\begin{align*}
+    \lim_{b\to\infty}n\int_{0}^{b}(nt)^{s-1}e^{-nt}dt&=
+    \lim_{b\to\infty}\int_{0}^{nb}(x)^{s-1}e^{-x}dx\\
+    &=\lim_{nb\to\infty}\int_{0}^{nb}(x)^{s-1}e^{-x}dx\\
+    &=\lim_{c\to\infty}\int_{0}^{c}(x)^{s-1}e^{-x}dx\\
+    &=\int_{0}^{\infty }t^{s-1}e^{-t}dt\\
+    &=\Gamma (s)
+\end{align*}
+Then by rearrangement:
+$$\frac{1}{n^s}\Gamma (s)=\int_{0}^{\infty}t^{s-1}e^{-nt}dt$$
+
+
+
+\paragraph{(c)}Proof:\\
+\begin{align*}
+    \zeta(s)\Gamma(s)&=\sum_{n=1}^{\infty}\frac{1}{n^s}\Gamma(s)\\
+\end{align*}
+By \textbf{4(b)} we have:
+$$\frac{1}{n^s}\Gamma (s)=\int_{0}^{\infty}t^{s-1}e^{-nt}dt$$
+Also by the feasibility of swapping the symbols and the formula of geometrical sequence summation, we can get:
+\begin{align*}
+    \sum_{n=1}^{\infty}\frac{1}{n^s}\Gamma(s)&=\sum_{n=1}^{\infty}\int_{0}^{\infty}t^{s-1}e^{-nt}dt\\
+    &=\int_{0}^{\infty}\sum_{n=1}^{\infty}t^{s-1}e^{-nt}dt\\
+    &=\int_{0}^{\infty}t^{s-1}(\sum_{n=1}^{\infty}e^{-nt})dt\\
+    &=\int_{0}^{\infty}\frac{t^{s-1}}{e^t-1}dt
+\end{align*}
+To conclude:
+\begin{align*}
+    \zeta(s)\Gamma(s)&=\int_{0}^{\infty}\frac{t^{s-1}}{e^t-1}dt\\
+\end{align*}
+
+\end{document}
